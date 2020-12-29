@@ -14,7 +14,7 @@ class ReviewsController extends Controller
         $reviews = [
             (object) [
                 'id' => 1,
-                'title' => 'タイトル1',
+                'title' => '銘柄１',
                 'body' => '本文1',
                 'created_at' => now(),
                 'user' => (object) [
@@ -24,7 +24,7 @@ class ReviewsController extends Controller
             ],
             (object) [
                 'id' => 2,
-                'title' => 'タイトル2',
+                'title' => '銘柄2',
                 'body' => '本文2',
                 'created_at' => now(),
                 'user' => (object) [
@@ -34,7 +34,7 @@ class ReviewsController extends Controller
             ],
             (object) [
                 'id' => 3,
-                'title' => 'タイトル3',
+                'title' => '銘柄3',
                 'body' => '本文3',
                 'created_at' => now(),
                 'user' => (object) [

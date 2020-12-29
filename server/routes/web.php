@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('/', 'ReviewsController@index');
+Route::get('/', 'TopController@index')->name('top.index');
