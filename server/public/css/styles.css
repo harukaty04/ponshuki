@@ -1,0 +1,24 @@
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/bootflat/2.0.4/css/bootflat.min.css');
+
+.my-navbar-control{
+    text-align: right;
+}
+
+.my-navbar-brand{
+    font-size: 2.5rem;
+}
+
+.my-navbar{
+    /* margin: 0 6rem 0 6rem; */
+    padding: 0 10px 0 10px;
+}
+
+.container{
+    width: 60%;
+    margin: 0 30% 0 20% ;
+}
+
+.panel-heading{
+    text-align: center;
+}

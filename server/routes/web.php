@@ -12,4 +12,3 @@
 */
 
 Route::get('/', 'TopController@index')->name('top.index');
-Route::get('/', 'SidebarController@index')->name('sidebar.index');
