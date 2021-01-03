@@ -9,16 +9,22 @@
     font-size: 2.5rem;
 }
 
-.my-navbar{
-    /* margin: 0 6rem 0 6rem; */
+/* top.indexで表示させた際に幅を設定するため */
+header, main{
+    margin: 0 20% 0 20%;
     padding: 0 10px 0 10px;
 }
 
 .container{
     width: 60%;
-    margin: 0 30% 0 20% ;
+    margin: 0 20% 0 20% ;
 }
 
 .panel-heading{
     text-align: center;
+}
+
+rigthtsideのmarginで調整
+.rightside{
+
 }

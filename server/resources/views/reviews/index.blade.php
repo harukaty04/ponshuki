@@ -1,5 +1,5 @@
 <!-- 親ファイルapp.blade.phpを継承 -->
-@extends('home')
+<!-- @extends('home')
 
 @section('title', 'レビューページ')
 
@@ -33,4 +33,4 @@
     </div>
     @endforeach 
   </div>
-@endsection
+@endsection -->
