@@ -19,26 +19,12 @@
 </head>
 
 <body>
-    <div class="container">
-        @include('shared.header')
-
-        <div class="row">
-            <div class="col-sm-4">
-                @include('shared.side-bar')
-            </div>
-
-            <div class="col-sm-8">
-                @yield('content')
-            </div>
+    <main>
+        <div class="container">
+            @include('shared.header')
+            @yield('content')
         </div>
-    </div>
-
-
-
-
-
-
-
+    </main>
 
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

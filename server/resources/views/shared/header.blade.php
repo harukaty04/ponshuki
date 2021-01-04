@@ -1,5 +1,5 @@
 
-<nav class="my-navbar blue-gradient">
+<nav class="my-navbar blue-gradient px-3">
     <a class="my-navbar-brand text-dark" href="/">
     <i class="fas fa-wine-glass-alt"></i>
         ponshuki</a>
