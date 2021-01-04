@@ -1,21 +1,21 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-        <div class="col col-md-offset-3 col-md-6">
+    <div class="container mt-5" >
+        <div class="row ">
+        <div class="col col-md-offset-1 col-md-6">
             <nav class="panel panel-default">
             <div class="panel-heading">会員登録</div>
             <div class="panel-body">
-                {{-- @if($errors->any()) --}}
+                @if($errors->any()) 
                 <div class="alert alert-danger">
-                    {{-- @foreach($errors->all() as $message) --}}
+                    @foreach($errors->all() as $message)
                     <p>{{ $message }}</p>
                     @endforeach
                 </div>
-                {{-- @endif --}}
-                {{-- <form action="{{ route('register') }}" method="POST"> --}}
-                {{-- @csrf --}}
+                @endif  
+                <form action="{{ route('register') }}" method="POST">
+                @csrf
                 <div class="form-group">
                     <label for="email">メールアドレス</label>
                     <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}" />

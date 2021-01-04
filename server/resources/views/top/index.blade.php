@@ -39,19 +39,29 @@
 
 @section('content')
 
-    @if (false)
+    @if (true)
     <div class="row">
         <div class="col-sm-4">
             @include('shared.side-bar')
         </div>
-        <div class="col-sm-8">
-            <div class="test"></div>
+        <div class="col-sm-8 mt-5">
+        @include('reviews.create')
         </div>
     </div>
 
     @else
     @include('shared.welcome')
     @endif
+
+    <a class="dropdown-item" href="{{ route('logout') }}"
+    onclick="event.preventDefault();
+    document.getElementById('logout-form').submit();">
+        {{ __('Logout') }}
+    </a>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
 
 @endsection
 
