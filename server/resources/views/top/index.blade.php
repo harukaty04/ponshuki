@@ -37,14 +37,16 @@
 
 @extends('layouts.layout')
 
+@section('title', 'ponshuki')
+
 @section('content')
 
-    @if (false)
-    <div class="row">
+    @if (Auth::check())
+    <div class="p-side-origin">
         <div class="col-sm-4">
             @include('shared.side-bar')
         </div>
-        <div class="col-sm-8 mt-5">
+        <div class="col-sm-8">
         @include('reviews.create')
         </div>
     </div>

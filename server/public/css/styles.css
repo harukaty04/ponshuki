@@ -13,21 +13,29 @@
     text-align: center;
 }
 
-.test {
+.bg-light-blue {
+    width: 100%;
+    background-color: #dcf2fa;
+}
+
+.welcome-bg-image {
     height: 50rem;
     background-image: url('image/nihonshu.png');
     background-size:  cover;
     border-radius: 35px;
+    opacity: 0.8;
 }
 
-.col {
-    margin-left: 20%;
-}
 
-.title{
+.page-title{
     color: rgba(0 0 0 / 0);
     letter-spacing: .1rem;
     -webkit-text-stroke: 3px #555555;
     text-shadow: 4px 4px 0 #498EE0;
 
 }
+
+.p-side-origin {
+    padding: 0 15%; 
+}
+
