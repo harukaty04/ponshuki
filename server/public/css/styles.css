@@ -1,6 +1,7 @@
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/bootflat/2.0.4/css/bootflat.min.css');
 
+
 .my-navbar-control{
     text-align: right;
 }
@@ -39,3 +40,24 @@
     padding: 0 15%; 
 }
 
+.p-side-adjust {
+    padding: 0 25%;
+}
+
+.menu {
+    -webkit-box-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    align-items: left;
+    width: 200px;
+}
+
+.sidebar-hover:hover {
+    background-color: aquamarine;
+    border-radius:30px;
+}
+
+.search-btn {
+    margin: 0px;
+}
