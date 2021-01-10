@@ -18,15 +18,13 @@ Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
 
 
 # ユーザー投稿関係(index, show)
-Route::get('/', 'TopController@index')->name('top.index');
+// Route::get('/', 'TopController@index')->name('top.index');
 // Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('review/{review}', 'ReviewController@show')->name('review.show')->where('article', '[0-9]+'); 
+Route::get('/','ReviewController@index')->name('top.index');
+Route::post('/create','ReviewController@create')->name('top.create');
 
 // 検索,分類ごとのページ(表示）
 Route::get('/search','SearchController@index')->name('menu.searchpage');
-Route::get('/search','SearchController@index')->name('menu.jukushu');
-Route::get('/search','SearchController@index')->name('menu.junshu');
-Route::get('/search','SearchController@index')->name('menu.kunshu');
-Route::get('/search','SearchController@index')->name('menu.soushu');
-
-
+Route::get('/likes','LikesController@index')->name('menu.likes');
+Route::get('/profile','ProfileController@index')->name('menu.profile');
