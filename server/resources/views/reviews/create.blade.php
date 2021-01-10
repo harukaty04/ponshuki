@@ -10,8 +10,14 @@
     <div class="card mt-3">
         <div class="card-body">
             <div class="card-text">
-                @include('reviews.form')
-                <button type="submit" class="btn blue-gradient float-right">投稿する</button>
+                <form action="{{ route('top.create') }}" method="post">
+                    @include('reviews.form')
+                    <button type="submit" class="btn blue-gradient float-right">投稿する</button>
+                    {{-- @if($errors->any())
+                    @endif --}}
+                </form>
+
+                
             </div>
         </div>
     </div>
