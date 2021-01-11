@@ -17,7 +17,8 @@ class ReviewController extends Controller
     }
 
     /**
-     * MEMO:データベースにレビュー内容が保存されるようなメソッドを実装する
+     * MEMO:データベースにレビュー内容が保存されるようなメソッドを実装する,
+     * 画像もpublicに保存できるようにする
     */
     public function create(Request $request)
     {
