@@ -25,8 +25,8 @@
                     <div class="loginbtn">
                     <a href="{{ route('login') }}" class="btn btn-primary rounded-pill  mb-2">ログイン</a>
                     <a href="{{ route('register') }}" type="button" class="btn btn-primary rounded-pill  mb-2">会員登録</a>
-                    <button type="button" class="btn btn-outline-light rounded-pull mb-2">簡単ログイン</button>
-                    {{-- <button type="button" class="btn btn-outline-primary mt-2">簡単ログイン</button> --}}
+                    <a href="{{ route('login.guest') }}" type="button" class="btn btn-outline-light rounded-pull mb-2">簡単ログイン</a>
+                    
                     </div>
                     @endif
                 </a>

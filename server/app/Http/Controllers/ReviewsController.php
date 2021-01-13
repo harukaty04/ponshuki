@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ReviewController extends Controller
+class ReviewsController extends Controller
 {
     /**
      * MEMO: あとでReview一括取得する処理を実装する

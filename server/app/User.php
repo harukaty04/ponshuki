@@ -5,7 +5,6 @@ namespace App;
 
 use App\Mail\BareMail;
 use App\Notifications\PasswordResetNotification;
-
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
