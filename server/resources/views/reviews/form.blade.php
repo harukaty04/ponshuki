@@ -1,18 +1,18 @@
 {{-- 銘柄、香りの評価、味の評価（★）、総合評価（★）、写真登録 --}}
     @csrf
     <div class="md-form">
-        <label>日本酒名</label>
+        <label class="wf-mplus1p">日本酒名</label>
         <input type="text" name="review-title" class="form-control" required value="{{ old('title') }}">
     </div>
 
     <div class="nihonshu-image pl-5">
-        <label class="nihonshu-image  ">画像</label>
+        <label class="nihonshu-image  wf-mplus1p">画像</label>
         <input type="file" name="review-image" accept="image/jpeg, image/png"  class="mx-auto pt-3">
     </div>
 
 
     <div class="taste-ev ">
-        <label class="taste-evl pl-5">味の濃さ</label>
+        <label class="taste-evl pl-5 wf-mplus1p">味の濃さ</label>
         <div class="ratebutton text-center">
             <div class="md-radio md-radio-inline d-inline">
                 <input type="radio" name="g1" value="1">
@@ -39,7 +39,7 @@
 
 
     <div class="scent-evl">
-        <label class="taste-evl pl-5">香りの強さ</label>
+        <label class="taste-evl pl-5 wf-mplus1p">香りの強さ</label>
         <div class="ratebutton text-center">
                 <div class="md-radio md-radio-inline d-inline">
                 <input  type="radio" name="g2" checked>
@@ -66,7 +66,7 @@
 
 
     <div class="comp-evl">
-        <label class="taste-evl pl-5">総合評価</label>
+        <label class="taste-evl pl-5 wf-mplus1p">総合評価</label>
         <div class="ratebutton text-center">
             <div class="md-radio md-radio-inline d-inline">
             <input  type="radio" name="g3" checked>
@@ -93,5 +93,5 @@
 
     <div class="form-group">
         <label></label>
-        <textarea name="body" required class="form-control" rows="4" placeholder="メモ">{{ old('body') }}</textarea>
+        <textarea name="body" required class="form-control wf-mplus1p" rows="4" placeholder="メモ">{{ old('body') }}</textarea>
     </div>

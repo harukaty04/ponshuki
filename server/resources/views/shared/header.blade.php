@@ -1,7 +1,7 @@
 
 <nav class="my-navbar blue-gradient p-side-origin">
-    <a class="my-navbar-brand text-dark pl-5" href="/">
-        <i class="fas fa-wine-glass-alt"></i>
+    <a class="my-navbar-brand  pl-5 page-title" href="/">
+        <i class="fas fa-wine-glass-alt "></i>
         ponshuki
     </a>
 

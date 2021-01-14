@@ -16,7 +16,7 @@
         
             <div class="box header">
                 <h2>haruka kimura</h2>
-                <p class="float-right "><a href="#" class="btn btn-outline-primary">プロフィールを編集</a></p>
+                <p class="float-right "><a href="" class="btn btn-outline-primary">プロフィールを編集</a></p>
                 
                 <p><img class="box-imag" src="https://makeshop-multi-images.akamaized.net/joylab/shopimages/19/01/1_000000000119.jpg?1600083302" 
                 width="100px" height="100px" alt="" /></p>
@@ -30,7 +30,7 @@
                 <a class="follower" href="#"><i class="fas fa-user-alt"></i> 225M |</a>
                 {{-- </ul> --}}
             </span>
-            
+
             <span class="badge badge-pill badge-light">醇酒</span>
         
             {{-- </div>

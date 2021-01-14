@@ -8,7 +8,10 @@
     @yield('title')
     </title>
     <!-- Font Awesome -->
+    <link href="http://fonts.cdnfonts.com/css/allegra" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
@@ -17,7 +20,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="icon" type="image/ico" sizes="16x16" href="/favicon.ico">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     
     
 </head>
@@ -25,7 +28,9 @@
 <body>
     <main>
         @include('shared.header')
+        <div id="app">
         @yield('content')
+        </div>
     </main>
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -35,7 +40,8 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/js/mdb.min.js"></script>
-    {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
+    <script src="{{ mix('js/app.js') }}"></script>
+
 </body>
 
 </html>
