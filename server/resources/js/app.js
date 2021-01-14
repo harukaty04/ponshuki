@@ -5,10 +5,19 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+/**いいね機能追加のため実装
+*/
 
-require('./bootstrap');
+import './bootstrap'
+import Vue from 'vue'
+import ArticleLike from './components/ArticleLike'
 
-window.Vue = require('vue');
+const app = new Vue({
+    el: '#app',
+    components: {
+    ArticleLike,
+    }
+})
 
 /**
  * The following block of code may be used to automatically register your
@@ -29,16 +38,6 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// const app = new Vue({
-//     el: '#app'
-// });
 
 
-import StarRating from 'vue-star-rating'
-Vue.component('star-rating', StarRating);
-const app = new Vue({
-    el: '#star',
-    data: {
-        rating: 0
-    }
-});
+

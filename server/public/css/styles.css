@@ -14,17 +14,13 @@
     text-align: center;
 }
 
-.bg-light-blue {
-    width: 100%;
-    background-color: #dcf2fa;
-}
-
 .welcome-bg-image {
-    height: 50rem;
-    background-image: url('image/nihonshu.png');
-    background-size:  cover;
-    border-radius: 35px;
-    opacity: 0.8;
+    height: 45rem;
+    width: 64rem;
+    background-image: url('image/nihonshu.png') ;
+    background-size: contain;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
@@ -61,3 +57,10 @@
 .search-btn {
     margin: 0px;
 }
+
+.font-allegra{
+    font-family: 'Allegra', sans-serif;
+}
+
+.wf-mplus1p { 
+    font-family: "M PLUS 1p"; }

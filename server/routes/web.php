@@ -29,3 +29,8 @@ Route::post('/create','ReviewsController@create')->name('top.create');
 Route::get('/search','SearchController@index')->name('menu.searchpage');
 Route::get('/likes','LikesController@index')->name('menu.likes');
 Route::get('/profile','ProfileController@index')->name('menu.profile');
+
+//ユーザー表示処理
+Route::prefix('users')->name('users.')->group(function () {
+    Route::get('/{name}', 'UserController@show')->name('show');
+});
