@@ -7,30 +7,33 @@
 
     <div class="my-navbar-control text-white">
         @if(Auth::check())
-        <span class="my-navbar-item">
-            <a class="h6" href=# ><i class="fas fa-user-circle pr-2"></i>{{ Auth::user()->name }} さん</a>
-                {{-- ドロップダウンボタンの実装 --}}
-                <a class="dropdown-toggle head_push " data-toggle="dropdown" href="#">
-                </a>
-                <ul class="dropdown-menu text-center bg-light">
-                {{-- ログアウトボタンの実装 --}}
-                <a class="doropdown-item " href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                    {{ __('ログアウト') }}
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>  
-                    @else
-                    <div class="loginbtn">
+        
+                <!-- Dropdown -->
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle " data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user-circle pr-2"></i>{{ Auth::user()->name }} さん
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-primary btn-light text-center" aria-labelledby="navbarDropdownMenuLink">
+                    <button form="logout-button" class="dropdown-item" type="submit">
+                        ログアウト
+                    </button>
+                    </div>
+                </div>
+                <form id="logout-button" method="POST" action="{{ route('logout') }}">
+                    @csrf
+                </form>
+                <!-- Dropdown -->
+        @else
+                <div class="loginbtn">
                     <a href="{{ route('login') }}" class="btn btn-primary rounded-pill  mb-2">ログイン</a>
                     <a href="{{ route('register') }}" type="button" class="btn btn-primary rounded-pill  mb-2">会員登録</a>
                     <a href="{{ route('login.guest') }}" type="button" class="btn btn-outline-light rounded-pull mb-2">簡単ログイン</a>
-                    
-                    </div>
-                    @endif
-                </a>
-                </ul> 
-        </span>
+                </div>
+            </div>
+        @endif
+        
+        
+            
     </div>
 </nav>

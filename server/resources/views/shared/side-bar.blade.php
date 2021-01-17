@@ -3,7 +3,7 @@
     <div class="menu-title text-info h3">
 
         <div class="p-3 sidebar-hover">
-            <a class="side-bar-link h3 font-allegra" href="/" >
+            <a class="side-bar-link font-allegra" href="/" >
                 <i class="fas fa-home fa-lg pr-3"></i> Home
             </a>
         </div>

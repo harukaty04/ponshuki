@@ -3,11 +3,11 @@
 @section('content')
 
 <div class="p-side-origin">
-    <div class="col-sm-4">
+    <div class="col-sm-3 ml-auto mr-auto">
         @include('shared.side-bar')
     </div>
 
-    <div class="col-sm-8 ">
+    <div class="col-sm-9 ">
         
         
         <div class="card mt-5 mb-3">
