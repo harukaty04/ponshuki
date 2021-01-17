@@ -1,6 +1,6 @@
 
 <nav class="my-navbar blue-gradient p-side-origin">
-    <a class="my-navbar-brand  pl-5 page-title" href="/">
+    <a class="my-navbar-brand  pl-5 page-title" href="{{ route( 'top.index' ) }} ">
         <i class="fas fa-wine-glass-alt "></i>
         ponshuki
     </a>

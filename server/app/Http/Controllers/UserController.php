@@ -49,4 +49,5 @@ class UserController extends Controller
     {
         return view('users.edit_profile');
     }
+
 }

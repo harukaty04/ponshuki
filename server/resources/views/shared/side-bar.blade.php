@@ -15,8 +15,9 @@
         </div>
 
         <div class="p-3 sidebar-hover">
-            <a class="side-bar-link font-allegra" href="/profile" >
+            <a class="side-bar-link font-allegra" href="{{ route( 'users.profile',['id' => Auth::user()->id] ) }} " >
                 <i class="fas fa-user-alt fa-lg pr-3"></i> Profile
+                
             </a>
         </div>
 
@@ -25,13 +26,5 @@
                 <i class="far fa-heart fa-lg pr-3"></i> Likes
             </a>
         </div>
-
-
-
-
-        {{-- <a href="" class="btn1 btn btn-primary btn-block ">マイページ</a> --}}
-
-        {{-- <a href="/junshu" class="btn btn-primary btn-block">醇</a> --}}
-        {{-- <a href="/jukushu" class="btn btn-primary btn-block">熟</a> --}}
     </div>
 </div>
