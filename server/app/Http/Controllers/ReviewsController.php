@@ -8,15 +8,7 @@ use App\Review;
 
 class ReviewsController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    
     
     /**
      * Review一括取得する処理を実装する
@@ -24,15 +16,20 @@ class ReviewsController extends Controller
      */
     public function index()
     {
-        $reviews = Review::all();
+        $reviews = Review::orderBy('created_at', 'desc') // 投稿作成日が新しい順に並べる
+            ->get();
 
         // foreach ($reviews as $review) {
         //     // 取得したReviewsのうち、1件に対して->userとすることで
         //     // belong_toでつながっているuserモデルにアクセスすることができる
         //     dd($review->user->name);
         // }
-
-        $current_user_name = Auth::user()->name;
+        if ( Auth::check() ) {
+            $current_user_name = Auth::user()->name;
+        } else {
+            $current_user_name = '';
+        }
+        
 
         return view('top.index', compact('reviews', 'current_user_name'));
         
@@ -63,6 +60,7 @@ class ReviewsController extends Controller
                 'image'           => (string) $inputs['image'],
             ];
             Review::create($value);
+            
             
         }
         //return viewだと引数が渡っていないためredirect処理を追記
