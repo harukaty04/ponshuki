@@ -2,18 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Review;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
 {
-    public function show(string $name)
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        $user = User::where('name', $name)->first();
+        $this->middleware('auth');
+    }
 
-        return view('menu.profile', [
-            'user' => $user,
+    /**
+     * TODO: プロフィール表示はこっちのメソッドを使うこと
+     * 
+     */
+    public function show(int $id)
+    {
+        
+        $current_user_id = Auth::id();
+
+        if ( $id == $current_user_id) $current_user_name = Auth::user()->name;
+        else $current_user_name = User::find($id)->name;
+        
+        
+         //idが、リクエストされた$userのidと一致するuserを取得
+        $reviews = Review::where('user_id', $current_user_id) //$userによる投稿を取得
+            ->orderBy('created_at', 'desc') // 投稿作成日が新しい順に並べる
+            ->get();
+
+        return view('users.profile', [
+            'current_user_name' => $current_user_name,
+            'reviews' => $reviews,
         ]);
+
+    }
+
+    public function edit()
+    {
+        return view('users.edit_profile');
     }
 }

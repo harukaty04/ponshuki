@@ -26,11 +26,15 @@ Route::get('/','ReviewsController@index')->name('top.index');
 Route::post('/create','ReviewsController@create')->name('top.create');
 
 // 検索,分類ごとのページ(表示）
-Route::get('/search','SearchController@index')->name('menu.searchpage');
-Route::get('/likes','LikesController@index')->name('menu.likes');
-Route::get('/profile','ProfileController@index')->name('menu.profile');
+Route::get('/search','SearchController@index')->name('users.searchpage');
+Route::get('/likes','LikesController@index')->name('users.likes');
+Route::get('/profile','UserController@show')->name('users.profile');
+Route::get('/edit_profile','UserController@edit')->name('users.edit_profile');
 
 //ユーザー表示処理
 Route::prefix('users')->name('users.')->group(function () {
-    Route::get('/{name}', 'UserController@show')->name('show');
+    Route::get('/{id}', 'UserController@show')->name('profile');
 });
+
+//sakeAPI
+Route::get(' https://muro.sakenowa.com/sakenowa-data/api/brands');
