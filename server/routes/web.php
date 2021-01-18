@@ -21,6 +21,7 @@ Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
 # ユーザー投稿関係(index, show)
 Route::get('review/{review}', 'ReviewsController@show')->name('review.show')->where('article', '[0-9]+'); 
 Route::get('/','ReviewsController@index')->name('top.index');
+Route::resource('/review', 'ReviewsController');
 Route::post('/create','ReviewsController@create')->name('top.create');
 
 // 検索,分類ごとのページ(表示）
