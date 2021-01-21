@@ -23,6 +23,7 @@
         <div class="card-body">
             <a class="h4 " href="{{ route('users.profile',['id' => $review->user->id]) }} "><i class="fas fa-user-circle pr-2"></i>
                 {{ $review->user->name }}さん</a>
+            <a class="edit-bun btn  btn-outline-info btn-sm float-right" href="{{ route('reviews.edit',['id' => $review->id]) }}">編集</a>
         <h5 class="card-title border-bottom "> {{ $review->title }}   :   {{ $review->evaluation}}</h5>
             
         <img src="https://makeshop-multi-images.akamaized.net/joylab/shopimages/19/01/1_000000000119.jpg?1600083302" alt="" width="50px" height="50px" 
