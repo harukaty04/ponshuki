@@ -45,9 +45,12 @@ class UserController extends Controller
 
     }
 
-    public function edit()
+    
+
+        public function edit(Request $request)
     {
-        return view('users.edit_profile');
+        $users = User::find($request->id);
+        return view('users.edit_profile', ['reviews' => $users]); 
     }
 
 }
