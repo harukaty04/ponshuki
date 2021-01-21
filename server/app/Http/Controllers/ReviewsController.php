@@ -68,5 +68,25 @@ class ReviewsController extends Controller
         return redirect()->route('top.index');
         
     }
+
+    //編集機能の追加
+    public function edit(int $review_id)
+    {
+        //'reviews'をキーとして使えるように設定
+        $review = Review::find($review_id);
+
+        return view('reviews.edit', ['review' => $review]); 
+    }
+
+    public function update(Request $request)
+    {
+        $reviews = Review::find($request->id);
+        $reviews->title = $request->title;
+        $reviews->content = $request->content;
+        $reviews->update();
+        return redirect('top.index');
+    }
+
+    
 }
 
