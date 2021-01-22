@@ -23,6 +23,10 @@ Route::get('review/{review}', 'ReviewsController@show')->name('review.show')->wh
 Route::get('/','ReviewsController@index')->name('top.index');
 Route::resource('/review', 'ReviewsController');
 Route::post('/create','ReviewsController@create')->name('top.create');
+Route::get('/review/edit/{review_id}', 'ReviewsController@edit')->name('reviews.edit');
+Route::post('/review/edit/{review_id}', 'ReviewsController@update')->name('reviews.update');
+
+# 編集機能作成
 
 // 検索,分類ごとのページ(表示）
 Route::get('/search','SearchController@index')->name('users.searchpage');
