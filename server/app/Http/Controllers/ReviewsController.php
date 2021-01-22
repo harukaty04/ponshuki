@@ -82,11 +82,13 @@ class ReviewsController extends Controller
     {
         $reviews = Review::find($request->id);
         $reviews->title = $request->title;
+        $reviews->image = $request->image;
+        $reviews->taste_intensity = $request->taste_intensity;
+        $reviews->scent_strength = $request->scent_strength;
+        $reviews->evaluation = $request->evaluation;
         $reviews->content = $request->content;
         $reviews->update();
-        return redirect('top.index');
+        return redirect()->route('top.index');
     }
-
-    
 }
 
