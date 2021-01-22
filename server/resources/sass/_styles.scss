@@ -1,0 +1,66 @@
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/bootflat/2.0.4/css/bootflat.min.css');
+
+
+.my-navbar-control{
+    text-align: right;
+}
+
+.my-navbar-brand{
+    font-size: 2.5rem;
+}
+
+.panel-heading{
+    text-align: center;
+}
+
+.welcome-bg-image {
+    height: 45rem;
+    width: 64rem;
+    background-image: url('image/nihonshu.png') ;
+    background-size: contain;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.page-title{
+    color: rgba(0 0 0 / 0);
+    letter-spacing: .1rem;
+    -webkit-text-stroke: 3px #555555;
+    text-shadow: 4px 4px 0 #498EE0;
+
+}
+
+.p-side-origin {
+    padding: 0 15%; 
+}
+
+.p-side-adjust {
+    padding: 0 25%;
+}
+
+.menu {
+    -webkit-box-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    align-items: left;
+    width: 200px;
+}
+
+.sidebar-hover:hover {
+    background-color: aquamarine;
+    border-radius:30px;
+}
+
+.search-btn {
+    margin: 0px;
+}
+
+.font-allegra{
+    font-family: 'Allegra', sans-serif;
+}
+
+.wf-mplus1p { 
+    font-family: "M PLUS 1p"; }
