@@ -8,7 +8,7 @@ class SearchController extends Controller
 {
     public function index()
     {
-        return view('users.searchpage');
+        return view('user.searchpage');
         //sakeAPI練習
     }
 }

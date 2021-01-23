@@ -6,12 +6,12 @@
 @section('content')
 
     @if (Auth::check())
-    <div class="p-side-origin">
-        <div class="col-sm-3 ml-auto mr-auto">
-            @include('shared.side-bar')
+    <div class="row p-side-origin ">
+        <div class="col-sm-3">
+        @include('shared.side-bar')
         </div>
         <div class="col-sm-9">
-        @include('reviews.create')
+        @include('review.create')
         </div>
     </div>
 

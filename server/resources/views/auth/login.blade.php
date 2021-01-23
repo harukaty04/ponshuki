@@ -2,10 +2,9 @@
 
     @section('content')
     <div class="container mt-5 ">
-        <div class="row">
-            <div class="col col-md-offset-3 col-md-6 ">
-                <nav class="panel panel-default">
-                    <div class="panel-heading">ログイン</div>
+        <div class="w-50 card m-auto">
+            <nav class="panel panel-default ml-3 mr-3 ">
+                    <div class="panel-heading mt-3 mb-3 h3 border-bottom font-weight-bold">ログイン</div>
                         <div class="panel-body">
                             @if($errors->any())
                             <div class="alert alert-danger">
@@ -29,10 +28,9 @@
                             </div>
                             </form>
                         </div>
-                </nav>
-                <div class="text-center">
-                <a href="{{ route('password.request') }}">パスワードの変更はこちらから</a>
-                </div>
+            </nav>
+            <div class="text-center">
+            <a href="{{ route('password.request') }}">パスワードの変更はこちらから</a>
             </div>
         </div>
     </div>

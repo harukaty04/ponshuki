@@ -8,6 +8,6 @@ class LikesController extends Controller
 {
     public function index()
     {
-        return view('users.likes');
+        return view('user.likes');
     }
 }

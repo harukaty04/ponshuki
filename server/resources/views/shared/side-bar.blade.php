@@ -1,6 +1,5 @@
-
 <div class="menu mt-3" >
-    <div class="menu-title text-info h3">
+    <div class="menu-title text-info h1">
 
         <div class="p-3 sidebar-hover">
             <a class="side-bar-link font-allegra" href="/" >
@@ -15,14 +14,13 @@
         </div>
 
         <div class="p-3 sidebar-hover">
-            <a class="side-bar-link font-allegra" href="{{ route( 'users.profile',['id' => Auth::user()->id] ) }} " >
+            <a class="side-bar-link font-allegra" href="{{ route( 'user.profile',['id' => Auth::user()->id] ) }} " >
                 <i class="fas fa-user-alt fa-lg pr-3"></i> Profile
-                
             </a>
         </div>
 
         <div class="p-3 sidebar-hover">
-            <a class="side-bar-link font-allegra" href="/likes" >
+            <a class="side-bar-link font-allegra" href="{{ route('user.likes')}}" >
                 <i class="far fa-heart fa-lg pr-3"></i> Likes
             </a>
         </div>

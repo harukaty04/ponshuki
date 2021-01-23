@@ -23,16 +23,17 @@ Route::get('review/{review}', 'ReviewsController@show')->name('review.show')->wh
 Route::get('/','ReviewsController@index')->name('top.index');
 Route::resource('/review', 'ReviewsController');
 Route::post('/create','ReviewsController@create')->name('top.create');
-Route::get('/review/edit/{review_id}', 'ReviewsController@edit')->name('reviews.edit');
-Route::post('/review/edit/{review_id}', 'ReviewsController@update')->name('reviews.update');
+Route::get('/review/edit/{review_id}', 'ReviewsController@edit')->name('review.edit');
+Route::post('/review/edit', 'ReviewsController@update')->name('review.update');
+Route::post('/review/destroy','ReviewsController@destroy')->name('review.destroy');
 
 # 編集機能作成
 
 // 検索,分類ごとのページ(表示）
-Route::get('/search','SearchController@index')->name('users.searchpage');
-Route::get('/likes','LikesController@index')->name('users.likes');
-Route::get('/profile','UserController@show')->name('users.profile');
-Route::get('/edit_profile','UserController@edit')->name('users.edit_profile');
+Route::get('/search','SearchController@index')->name('user.searchpage');
+Route::get('/likes','LikesController@index')->name('user.likes');
+Route::get('/profile/{id}','UserController@show')->name('user.profile');
+Route::get('/edit_profile','UserController@edit')->name('user.edit_profile');
 
 //ユーザー表示処理
 Route::prefix('users')->name('users.')->group(function () {

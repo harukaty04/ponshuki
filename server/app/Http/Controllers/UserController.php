@@ -26,31 +26,26 @@ class UserController extends Controller
      */
     public function show(int $id)
     {
-        
         $current_user_id = Auth::id();
 
         if ( $id == $current_user_id) $current_user_name = Auth::user()->name;
         else $current_user_name = User::find($id)->name;
-        
         
          //idが、リクエストされた$userのidと一致するuserを取得
         $reviews = Review::where('user_id', $current_user_id) //$userによる投稿を取得
             ->orderBy('created_at', 'desc') // 投稿作成日が新しい順に並べる
             ->get();
 
-        return view('users.profile', [
+        return view('user.profile', [
             'current_user_name' => $current_user_name,
             'reviews' => $reviews,
         ]);
-
     }
-
-    
 
         public function edit(Request $request)
     {
         $users = User::find($request->id);
-        return view('users.edit_profile', ['reviews' => $users]); 
+        return view('user.edit_profile', ['reviews' => $users]); 
     }
 
 }
