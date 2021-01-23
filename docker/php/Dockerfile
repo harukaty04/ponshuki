@@ -7,7 +7,8 @@ RUN apt-get update \
   && apt-get install -y zlib1g-dev mariadb-client \
   && docker-php-ext-install zip pdo_mysql \
   && apt-get install -y cron \
-  && apt-get -y install unzip
+  && apt-get -y install unzip \
+  vim
 
 #Composer install
 COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer

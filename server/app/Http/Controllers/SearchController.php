@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TopController extends Controller
+class SearchController extends Controller
 {
     public function index()
     {
-        return view('top.index');
+        return view('users.searchpage');
+        //sakeAPI練習
     }
 }
+

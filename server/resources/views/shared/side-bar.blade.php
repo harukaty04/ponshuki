@@ -1,23 +1,30 @@
 
-<div class="sidebar">
-    <div class="card mt-3">
-        <div class="card-body">
+<div class="menu mt-3" >
+    <div class="menu-title text-info h3">
 
-            <nav class="panel panel-default">
+        <div class="p-3 sidebar-hover">
+            <a class="side-bar-link font-allegra" href="/" >
+                <i class="fas fa-home fa-lg pr-3"></i> Home
+            </a>
+        </div>
+
+        <div class="p-3 sidebar-hover">
+            <a class="side-bar-link font-allegra" href="/search" >
+                <i class="fas fa-search fa-lg pr-3"></i> Search
+            </a>
+        </div>
+
+        <div class="p-3 sidebar-hover">
+            <a class="side-bar-link font-allegra" href="{{ route( 'users.profile',['id' => Auth::user()->id] ) }} " >
+                <i class="fas fa-user-alt fa-lg pr-3"></i> Profile
                 
-                <div class="panel-heading">メニュー</div>
-                <div class="panel-body">
-                    
-                    <a href="" class="btn1 btn btn-primary btn-block ">マイページ</a>
-                    <a href="" class="btn2 btn btn-primary btn-block ">
-                        日本酒をさがす <i class="fas fa-search"></i></a>
-                    <a href="" class="btn3 btn btn-primary btn-block">薫</a>
-                    <a href="" class="btn4 btn btn-primary btn-block">爽</a>
-                    <a href="" class="btn5 btn btn-primary btn-block">醇</a>
-                    <a href="" class="btn6 btn btn-primary btn-block">熟</a>
-                </div>
-            </nav>
+            </a>
+        </div>
 
+        <div class="p-3 sidebar-hover">
+            <a class="side-bar-link font-allegra" href="/likes" >
+                <i class="far fa-heart fa-lg pr-3"></i> Likes
+            </a>
         </div>
     </div>
 </div>
