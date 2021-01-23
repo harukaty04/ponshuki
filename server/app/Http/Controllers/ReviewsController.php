@@ -19,6 +19,8 @@ class ReviewsController extends Controller
         $reviews = Review::orderBy('created_at', 'desc') // 投稿作成日が新しい順に並べる
             ->get();
 
+        $current_user_id = Auth::id();
+
         // foreach ($reviews as $review) {
         //     // 取得したReviewsのうち、1件に対して->userとすることで
         //     // belong_toでつながっているuserモデルにアクセスすることができる
@@ -31,7 +33,7 @@ class ReviewsController extends Controller
         }
         
 
-        return view('top.index', compact('reviews', 'current_user_name'));
+        return view('top.index', compact('reviews', 'current_user_name', 'current_user_id'));
         
     }
 
@@ -75,8 +77,9 @@ class ReviewsController extends Controller
         //'reviews'をキーとして使えるように設定
         $review = Review::find($review_id);
 
-        return view('reviews.edit', ['review' => $review]); 
+        return view('review.edit', ['review' => $review]); 
     }
+
 
     public function update(Request $request)
     {
@@ -90,5 +93,25 @@ class ReviewsController extends Controller
         $reviews->update();
         return redirect()->route('top.index');
     }
+
+    public function destroy(Request $request)
+    {
+        $review = Review::find($request->review_id);
+        $review->delete();
+        return redirect()->route('top.index');
+    }
+
+    //     public function delete(Request $request)
+    // {
+    //     $article = Review::find($request->id);
+    //     return view('review.delete', ['article' => $article]); 
+    // }
+
+    // public function remove(Request $request)
+    // {
+    //     $review = Review::find($request->id);
+    //     $review->delete();
+    //     return redirect()->route('top.index');
+    // }
 }
 

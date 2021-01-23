@@ -8,13 +8,13 @@
 /**いいね機能追加のため実装
 */
 
-import './bootstrap'
-import Vue from 'vue'
+// import './bootstrap'
+// import Vue from 'vue'
 
 
-const app = new Vue({
-    el: '#app',
-})
+// const app = new Vue({
+//     el: '#app',
+// })
 
 /**
  * The following block of code may be used to automatically register your

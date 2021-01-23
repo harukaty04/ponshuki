@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="p-side-origin">
+<div class="row p-side-origin">
     <div class="col-sm-3 ml-auto mr-auto">
         @include('shared.side-bar')
     </div>
@@ -26,8 +26,7 @@
                 米と酒の味の世界を追求している。「十四代 純米中取り無濾過」をはじめ正規価格での入手困難な幻の酒の筆頭格。
                 刺身、天ぷら、和食などとじっくりと合わせたい。</p>
                 <span class="badge badge-pill badge-light">爽酒</span>
-                <article-like class="mt-3">
-                </article-like>
+                
             </div>
             
         </div>
@@ -47,8 +46,6 @@
                 米と酒の味の世界を追求している。「十四代 純米中取り無濾過」をはじめ正規価格での入手困難な幻の酒の筆頭格。
                 刺身、天ぷら、和食などとじっくりと合わせたい。</p>
                 <span class="badge badge-pill badge-light">薫酒</span>
-                <article-like class="mt-3">
-                </article-like>
             </div>
         </div>
 
@@ -70,8 +67,6 @@
                 米と酒の味の世界を追求している。「十四代 純米中取り無濾過」をはじめ正規価格での入手困難な幻の酒の筆頭格。
                 刺身、天ぷら、和食などとじっくりと合わせたい。</p>
                 <span class="badge badge-pill badge-light">爽酒</span>
-                <article-like class="mt-3">
-                </article-like>
             </div>
         </div>
     </div>

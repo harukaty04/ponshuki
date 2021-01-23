@@ -5,7 +5,7 @@
 @section('title', 'ponshuki')
 
 @section('content')
-<div class="p-side-origin">
+<div class="row p-side-origin">
     <div class="col-sm-3">
         @include('shared.side-bar')
     </div>
@@ -31,7 +31,7 @@
                 <a class="h4 " href=# ><i class="fas fa-user-circle pr-2"></i>harukaさん</a>
                 <h5 class="card-title border-bottom">新政  ★★★☆☆</h5>
                 <a class="badge badge-pill badge-light ">爽酒</a>
-            <img src="https://img15.shop-pro.jp/PA01209/633/product/87285016_o7.png?cmsp_timestamp=20200313172105" alt="" width="50px" height="50px"  />
+                <img src="https://mutsu8000.com/wp/wp-content/uploads/pic_8000-0500-640x960.jpg" alt="" width="50px" height="50px"  />
             <span class="all-rating">
             味の濃さ ★★★☆☆ /香りの強さ ★★★☆☆ 
             </span>
@@ -41,8 +41,6 @@
                 米と酒の味の世界を追求している。「十四代 純米中取り無濾過」をはじめ正規価格での入手困難な幻の酒の筆頭格。
                 刺身、天ぷら、和食などとじっくりと合わせたい。</p>
                 
-                <article-like class="mt-3">
-                </article-like>
             </div>
         </div>
     
@@ -62,8 +60,6 @@
                 米と酒の味の世界を追求している。「十四代 純米中取り無濾過」をはじめ正規価格での入手困難な幻の酒の筆頭格。
                 刺身、天ぷら、和食などとじっくりと合わせたい。</p>
                 
-                <article-like class="mt-3">
-                </article-like>
             </div>
         </div>
 
@@ -83,8 +79,6 @@
                 特筆すべきは酒米の育種を行っていることで、「酒未来」「龍の落とし子」「羽州誉」の3種の酒米を開発。さまざまな米を使いながら、
                 米と酒の味の世界を追求している。「十四代 純米中取り無濾過」をはじめ正規価格での入手困難な幻の酒の筆頭格。
                 刺身、天ぷら、和食などとじっくりと合わせたい。</p>
-                <article-like class="mt-3">
-                </article-like>
                 
             </div>
         </div>
@@ -95,7 +89,7 @@
                 <a class="h4 " href=# ><i class="fas fa-user-circle pr-2"></i>jirou さん</a>
                 <h5 class="card-title border-bottom">新政  ★★★☆☆</h5>
                 <span class="badge badge-pill badge-light">爽酒</span>
-            <img src="https://img15.shop-pro.jp/PA01209/633/product/87285016_o7.png?cmsp_timestamp=20200313172105" alt="" width="50px" height="50px"  />
+                <img src="https://mutsu8000.com/wp/wp-content/uploads/pic_8000-0500-640x960.jpg" alt="" width="50px" height="50px"  />
             <span class="all-rating">
             味の濃さ ★★★☆☆ /香りの強さ  ★★★☆☆
             </span>
@@ -105,8 +99,6 @@
                 米と酒の味の世界を追求している。「十四代 純米中取り無濾過」をはじめ正規価格での入手困難な幻の酒の筆頭格。
                 刺身、天ぷら、和食などとじっくりと合わせたい。</p>
                 
-                <article-like class="mt-3">
-                </article-like>
             </div>
             
         </div>

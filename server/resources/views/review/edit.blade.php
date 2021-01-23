@@ -3,7 +3,7 @@
 
 
 @section('content')
-<div class="p-side-origin">
+<div class="p-side-origin row">
     <div class="col-sm-3">
         @include('shared.side-bar')
     </div>
@@ -13,8 +13,8 @@
             <div class="card mt-3">
                 <div class="card-body">
                     <div class="card-text">
-                        <form action="{{ route('reviews.update',['id' => $review->id]) }}" method="post">
-                            @include('reviews.form')
+                        <form action="{{ route('review.update') }}" method="post">
+                            @include('review.form')
                             <button type="submit" class="btn blue-gradient float-right wf-mplus1p" >更新</button>
                         </form>
 
