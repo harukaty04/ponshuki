@@ -5,7 +5,7 @@
     <div class="card mt-3">
         <div class="card-body">
             <div class="card-text">
-                <form action="{{ route('top.index') }}" method="post" action="/public/images" enctype="multipart/form-data">
+                <form action="{{ route('top.create') }}" method="post" action="/public/images" enctype="multipart/form-data">
                     @include('review.form')
                     <button type="submit" class="update btn blue-gradient float-right wf-mplus1p">投稿する</button>
                 </form>
@@ -70,7 +70,7 @@
             
             @endif
         <h5 class="card-title border-bottom "> {{ $review->title }}   :   {{ $review->evaluation}}</h5>      
-        <img src="{{ asset('public/images' . $review->image) }}" alt="" width="50px" height="50px" />
+        <img src="../../uploads/{{ $review->image }}" alt="" width="50px" height="50px" />
         <span class="all-rating">
         味の濃さ  {{ $review->taste_intensity}} /香りの強さ  {{ $review->scent_strength}}
         </span>
