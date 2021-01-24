@@ -59,11 +59,14 @@ class ReviewsController extends Controller
                 'taste_intensity' => (int) $inputs['taste_intensity'],
                 'scent_strength'  => (int) $inputs['scent_strength'],
                 'evaluation'      => (int) $inputs['evaluation'],
-                'ponshu_image'    => (string) $inputs['ponshu_image'],
+                'image'    => (string) $inputs['image'],
             ];
             Review::create($value);
             
-            
+            $file = $request->image;
+            $fileName = time() . $file->getClientOriginalName();
+            $target_path = public_path('uploads/');
+            $file->move($target_path, $fileName);
         }
         //return viewだと引数が渡っていないためredirect処理を追記
 
@@ -107,19 +110,6 @@ class ReviewsController extends Controller
 
         }
 
-    public function upload(Request $request)
-    {
-        $file = $request->image;
-        $fileName = time() . $file->getClientOriginalName();
-        $target_path = public_path('uploads/');
-        $file->move($target_path, $fileName);
-
-        return view('review.uploadIndex');
-    }
-
-    public function uploadIndex()
-    {
-        return view('review.uploadIndex');
-    }
+    
 }
 
