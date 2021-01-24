@@ -21,7 +21,8 @@ Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
 # ユーザー投稿関係(index, show)
 Route::get('review/{review}', 'ReviewsController@show')->name('review.show')->where('article', '[0-9]+'); 
 Route::get('/','ReviewsController@index')->name('top.index');
-Route::resource('/review', 'ReviewsController');
+//画像投稿でも使用
+Route::resource('review', 'ReviewsController', ['only' => ['create', 'store', 'destroy']]);
 Route::post('/create','ReviewsController@create')->name('top.create');
 Route::get('/review/edit/{review_id}', 'ReviewsController@edit')->name('review.edit');
 Route::post('/review/edit', 'ReviewsController@update')->name('review.update');
@@ -39,6 +40,10 @@ Route::get('/edit_profile','UserController@edit')->name('user.edit_profile');
 Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{id}', 'UserController@show')->name('profile');
 });
+
+//画像投稿
+Route::get('/upload','ReviewsController@uploadIndex')->name('review.uploadIndex');
+Route::post('/upload','ReviewsController@upload')->name('review.upload');
 
 //sakeAPI
 Route::get(' https://muro.sakenowa.com/sakenowa-data/api/brands');

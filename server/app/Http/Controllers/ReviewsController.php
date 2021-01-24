@@ -59,7 +59,7 @@ class ReviewsController extends Controller
                 'taste_intensity' => (int) $inputs['taste_intensity'],
                 'scent_strength'  => (int) $inputs['scent_strength'],
                 'evaluation'      => (int) $inputs['evaluation'],
-                'image'           => (string) $inputs['image'],
+                'ponshu_image'    => (string) $inputs['ponshu_image'],
             ];
             Review::create($value);
             
@@ -101,17 +101,25 @@ class ReviewsController extends Controller
         return redirect()->route('top.index');
     }
 
-    //     public function delete(Request $request)
-    // {
-    //     $article = Review::find($request->id);
-    //     return view('review.delete', ['article' => $article]); 
-    // }
+    public function store(Request $request)
+        {
+        $request->file('file')->store('');
 
-    // public function remove(Request $request)
-    // {
-    //     $review = Review::find($request->id);
-    //     $review->delete();
-    //     return redirect()->route('top.index');
-    // }
+        }
+
+    public function upload(Request $request)
+    {
+        $file = $request->image;
+        $fileName = time() . $file->getClientOriginalName();
+        $target_path = public_path('uploads/');
+        $file->move($target_path, $fileName);
+
+        return view('review.uploadIndex');
+    }
+
+    public function uploadIndex()
+    {
+        return view('review.uploadIndex');
+    }
 }
 
