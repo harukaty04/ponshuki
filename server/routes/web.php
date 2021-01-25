@@ -42,8 +42,6 @@ Route::prefix('users')->name('users.')->group(function () {
 });
 
 //画像投稿
-Route::get('/upload','ReviewsController@uploadIndex')->name('review.uploadIndex');
-Route::post('/upload','ReviewsController@upload')->name('review.upload');
 
 //sakeAPI
 Route::get(' https://muro.sakenowa.com/sakenowa-data/api/brands');
