@@ -7,12 +7,11 @@
     </div>
 
     <div class="nihonshu-image pl-5">
-        <label class="nihonshu-image  wf-mplus1p">画像</label>
-        <input type="file" name="image" accept="image/jpeg, image/png"  class=" pt-3 pl-5">
+            <label class="nihonshu-image">画像</label>
+            <input type="file" id="image" name="image" accept="image/jpeg, image/png"  class="pt-3 pl-5">
+            <iframe name="form_response" style="display:none;" ></iframe>
     </div>
-
-
-
+    
     <div class="taste-ev ">
         <label class="taste-evl pl-5 wf-mplus1p">味の濃さ</label>
         <div class="ratebutton ml-5 pl-5">
@@ -105,5 +104,3 @@
         
         <textarea name="content" required class="form-control wf-mplus1p" rows="4" placeholder="詳細">{{ $review->content ?? old('body') }}</textarea>
     </div>
-
-    {{----- 練習 -----}}

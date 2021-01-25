@@ -10,9 +10,9 @@
         
                 <!-- Dropdown -->
                 <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle " data-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle h3" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user-circle pr-2"></i>{{ Auth::user()->name }} さん
+                        <i class="fas fa-user-circle pr-2 h3"></i>{{ Auth::user()->name }} さん
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-primary btn-light text-center" aria-labelledby="navbarDropdownMenuLink">
                     <button form="logout-button" class="dropdown-item" type="submit">

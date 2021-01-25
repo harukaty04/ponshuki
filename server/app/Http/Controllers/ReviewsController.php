@@ -44,7 +44,6 @@ class ReviewsController extends Controller
     
     public function create(Request $request)
     {
-        
         $inputs = $request->all();
 
         // $inputsが空でなければ実行
@@ -52,23 +51,28 @@ class ReviewsController extends Controller
             // ログイン中のユーザーIDを取得
             $current_user_id = Auth::user()->id;
 
-            $value = [
-                'user_id'         => $current_user_id,
-                'title'           => (string) $inputs['title'] ?? '',
-                'content'         => (string) $inputs['content'] ?? '',
-                'taste_intensity' => (int) $inputs['taste_intensity'],
-                'scent_strength'  => (int) $inputs['scent_strength'],
-                'evaluation'      => (int) $inputs['evaluation'],
-                'image'           => (string) $inputs['image'],
-            ];
-            Review::create($value);
             
-            
+            $file = $request->image;
+            $fileName = time() . $file->getClientOriginalName();
+            $target_path = public_path('/uploads/image/');
+            $file->move($target_path, $fileName);
         }
-        //return viewだと引数が渡っていないためredirect処理を追記
 
-        return redirect()->route('top.index');
+        $value = [
+            'user_id'         => $current_user_id,
+            'title'           => (string) $inputs['title'] ?? '',
+            'content'         => (string) $inputs['content'] ?? '',
+            'taste_intensity' => (int) $inputs['taste_intensity'],
+            'scent_strength'  => (int) $inputs['scent_strength'],
+            'evaluation'      => (int) $inputs['evaluation'],
+            'image'           => (string) $fileName,
+        ];
+
+        Review::create($value);
+
+        //return viewだと引数が渡っていないためredirect処理を追記
         
+        return redirect()->route('top.index');
     }
 
     //編集機能の追加
@@ -101,17 +105,12 @@ class ReviewsController extends Controller
         return redirect()->route('top.index');
     }
 
-    //     public function delete(Request $request)
-    // {
-    //     $article = Review::find($request->id);
-    //     return view('review.delete', ['article' => $article]); 
-    // }
+    public function store(Request $request)
+        {
+        $request->file('file')->store('');
 
-    // public function remove(Request $request)
-    // {
-    //     $review = Review::find($request->id);
-    //     $review->delete();
-    //     return redirect()->route('top.index');
-    // }
+        }
+
+    
 }
 

@@ -5,12 +5,10 @@
     <div class="card mt-3">
         <div class="card-body">
             <div class="card-text">
-                <form action="{{ route('top.create') }}" method="post">
+                <form action="{{ route('top.create') }}" method="post" action="/public/images" enctype="multipart/form-data">
                     @include('review.form')
-                    <button type="submit" class="btn blue-gradient float-right wf-mplus1p">投稿する</button>
+                    <button type="submit" class="update btn blue-gradient float-right wf-mplus1p">投稿する</button>
                 </form>
-
-                
             </div>
         </div>
     </div>
@@ -71,8 +69,13 @@
             <!-- modal -->
             
             @endif
-        <h5 class="card-title border-bottom "> {{ $review->title }}   :   {{ $review->evaluation}}</h5>      
-        <img src="https://makeshop-multi-images.akamaized.net/joylab/shopimages/19/01/1_000000000119.jpg?1600083302" alt="" width="50px" height="50px" />
+        <h5 class="card-title border-bottom "> {{ $review->title }}   :   {{ $review->evaluation}}</h5> 
+        @if($review->image == null)
+        <img src="/uploads/noimage.jpg" width="100px" height="100px">
+        @else
+        <img src="/uploads/image/{{ $review->image }}" width="100px" height="100px">
+        @endif     
+        {{-- <img src="server/public/uploads{{ $reviews->image }}" alt="" width="50px" height="50px" /> --}}
         <span class="all-rating">
         味の濃さ  {{ $review->taste_intensity}} /香りの強さ  {{ $review->scent_strength}}
         </span>

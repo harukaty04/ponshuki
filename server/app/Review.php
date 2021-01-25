@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Carbon\Carbon;
 
+
 class Review extends Model
 {
     protected $table = "reviews";
@@ -15,7 +16,17 @@ class Review extends Model
 
     // 自動でupdated_atとcreated_atをレコード挿入時に入れてくれる
     public $timestamps = true;
+    public static $rules = [
+        'name'            => 'required|max: 30',
+        'user_id'         => 'required',
+        'title'           => 'required|max: 30',
+        'content'         => 'required|max: 1000',
+        'taste_intensity' => 'required',
+        'scent_strength'  => 'required',
+        'evaluation'      => 'required',
+        'ponshu_image'      => 'image|file',
 
+    ];
 
     /* ----- リレーション ----- */
     public function user(): BelongsTo
@@ -27,4 +38,6 @@ class Review extends Model
     {
         return $this->hasMany(Like::class);
     }
+
+    
 }
