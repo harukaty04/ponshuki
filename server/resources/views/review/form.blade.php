@@ -7,40 +7,10 @@
     </div>
 
     <div class="nihonshu-image pl-5">
-        {{-- <form class="nihonshu-image wf-mplus1p" action="/resource" method="POST" enctype="multipart/form-data"> --}}
-
             <label class="nihonshu-image">画像</label>
             <input type="file" id="image" name="image" accept="image/jpeg, image/png"  class="pt-3 pl-5">
             <iframe name="form_response" style="display:none;" ></iframe>
-        {{-- </form> --}}
     </div>
-
-
-<!-- エラーメッセージ。なければ表示しない -->
-{{-- @if ($errors->any())
-<ul>
-    @foreach($errors->all() as $error)
-    <li>{{ $error }}</li>
-    @endforeach
-</ul>
-@endif --}}
-    <!-- フォーム -->
-{{-- <form action="{{ url('upload') }}" method="POST" enctype="multipart/form-data"> --}}
-
-    <!-- アップロードした画像。なければ表示しない -->
-    {{-- @isset ($filename)
-    <div>
-        <img src="{{ asset('storage/' . $filename) }}">
-    </div>
-    @endisset
-
-    <label for="photo">画像ファイル:</label>
-    <input type="file" class="form-control" name="file">
-    <br>
-    <hr>
-</form> --}}
-
-
     
     <div class="taste-ev ">
         <label class="taste-evl pl-5 wf-mplus1p">味の濃さ</label>
