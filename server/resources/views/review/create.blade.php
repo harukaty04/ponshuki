@@ -69,8 +69,13 @@
             <!-- modal -->
             
             @endif
-        <h5 class="card-title border-bottom "> {{ $review->title }}   :   {{ $review->evaluation}}</h5>      
-        <img src="../../uploads/{{ $review->image }}" alt="" width="50px" height="50px" />
+        <h5 class="card-title border-bottom "> {{ $review->title }}   :   {{ $review->evaluation}}</h5> 
+        @if($review->image == null)
+        <img src="/uploads/noimage.jpg" width="100px" height="100px">
+        @else
+        <img src="/uploads/image/{{ $review->image }}" width="100px" height="100px">
+        @endif     
+        {{-- <img src="server/public/uploads{{ $reviews->image }}" alt="" width="50px" height="50px" /> --}}
         <span class="all-rating">
         味の濃さ  {{ $review->taste_intensity}} /香りの強さ  {{ $review->scent_strength}}
         </span>
