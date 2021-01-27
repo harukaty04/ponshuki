@@ -45,3 +45,4 @@ Route::prefix('users')->name('users.')->group(function () {
 
 //sakeAPI
 Route::get(' https://muro.sakenowa.com/sakenowa-data/api/brands');
+
