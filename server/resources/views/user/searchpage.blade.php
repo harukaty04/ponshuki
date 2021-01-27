@@ -110,7 +110,7 @@
 
 
 
-
+        ※<a href="https://sakenowa.com">さけのわデータ</a>を利用しています
     </div>
 </div>
 @endsection
