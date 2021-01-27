@@ -5,6 +5,11 @@
 @section('title', 'ponshuki')
 
 @section('content')
+<script type="text/javascript"
+src="http://code.jquery.com/jquery-1.9.1.min.js"></script>*1
+<script type="text/javascript"
+src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+
 <div class="row p-side-origin">
     <div class="col-sm-3">
         @include('shared.side-bar')
@@ -13,7 +18,19 @@
         <form action="GET">
             @csrf
             <div  class="input-group mt-5">
-                <input type="text" name="name" class="form-control" placeholder="日本酒の名前">
+                <input type="text" name="name" class="form-control" placeholder="日本酒の名前" id="sakeId">
+                <script>
+                    $(document).ready( function() {
+                    $( "#sakeId" ).autocomplete({
+                        source: [ 
+                        'HPI', 'Kyosho', 'Losi', 
+                        'Tamiya', 'Team Associated', 
+                        'Team Durango', 'Traxxas', 'Yokomo' 
+                        ]
+                    }
+                    )
+                });
+                </script>
                 <span class="input-group-btn vertical-align">
                 <button type="submit" class="search-btn btn btn-primary">検索</button>
                 </span>
@@ -21,8 +38,9 @@
         </form>
 
 
-
-
+        {{-- @foreach ( $sake_lists as $sake )
+            {{ $sake['name'] }}
+        @endforeach --}}
         {{-- 以下テスト、通常時は総合評価が高い順番に並んでいる --}}
         
         <div class="card mt-5 mb-3">
