@@ -10963,6 +10963,12 @@ a.text-dark:focus {
   font-family: "M PLUS 1p";
 }
 
+.preview img {
+  width: 200px;
+  margin: 10px;
+  border: solid 1px silver;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
