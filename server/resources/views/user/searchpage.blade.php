@@ -6,9 +6,10 @@
 
 @section('content')
 <script type="text/javascript"
-src="http://code.jquery.com/jquery-1.9.1.min.js"></script>*1
+src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript"
 src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+
 
 <div class="row p-side-origin">
     <div class="col-sm-3">
@@ -18,24 +19,16 @@ src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
         <form action="GET">
             @csrf
             <div  class="input-group mt-5">
-                <input type="text" name="name" class="form-control" placeholder="日本酒の名前" id="sakeId">
-                <script>
-                    $(document).ready( function() {
-                    $( "#sakeId" ).autocomplete({
-                        source: [ 
-                        'HPI', 'Kyosho', 'Losi', 
-                        'Tamiya', 'Team Associated', 
-                        'Team Durango', 'Traxxas', 'Yokomo' 
-                        ]
-                    }
-                    )
-                });
-                </script>
+                <input type="text" name="name" class="form-control" placeholder="日本酒の名前" autocomplete="on"  list="sake-data">
+                <datalist id="sake-data"></datalist>
+
                 <span class="input-group-btn vertical-align">
                 <button type="submit" class="search-btn btn btn-primary">検索</button>
                 </span>
             </div>
         </form>
+        <script src="{{ mix('/js/autocomplete.js') }}"></script>
+
 
 
         {{-- @foreach ( $sake_lists as $sake )
