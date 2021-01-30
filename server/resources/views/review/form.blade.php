@@ -2,8 +2,10 @@
     @csrf
     <div class="md-form">
         <label class="wf-mplus1p pl-5">日本酒名</label>
-        <input type="hidden" name="id" value={{ $review->id ?? '' }}>
-        <input type="text" name="title" class="form-control" required value="{{ $review->title ?? old('title') }}">
+        <input type="hidden" name="id" value={{ $review->id ?? '' }} >
+
+        <input type="text" name="title" class="form-control" autocomplete="on"  list="sake-data" required value="{{ $review->title ?? old('title') }}" >
+        <datalist id="sake-data"></datalist>
     </div>
 
     <div class="nihonshu-image pl-5">
