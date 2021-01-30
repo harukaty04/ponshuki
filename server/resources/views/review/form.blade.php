@@ -1,12 +1,19 @@
 {{-- 銘柄、香りの評価、味の評価（★）、総合評価（★）、写真登録 --}}
+<script type="text/javascript"
+src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript"
+src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+
+
     @csrf
     <div class="md-form">
         <label class="wf-mplus1p pl-5">日本酒名</label>
-        <input type="hidden" name="id" value={{ $review->id ?? '' }} >
+        <input type="hidden" name="id" value={{ $review->id ?? '' }}  >
 
         <input type="text" name="title" class="form-control" autocomplete="on"  list="sake-data" required value="{{ $review->title ?? old('title') }}" >
         <datalist id="sake-data"></datalist>
     </div>
+    <script src="{{ mix('/js/autocomplete.js') }}"></script>
 
     <div class="nihonshu-image pl-5">
             <label class="nihonshu-image">画像</label>
