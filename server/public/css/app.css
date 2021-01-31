@@ -10969,6 +10969,14 @@ a.text-dark:focus {
   border: solid 1px silver;
 }
 
+.liked {
+  color: #e93a3a;
+}
+
+.like-heart {
+  font-size: 25px;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);

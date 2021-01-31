@@ -18,24 +18,5 @@ class Like extends Model
         return $this->belongsTo(Review::class);
     }
     
-    //  //いいねしている投稿
-    // public function post()
-    // {
-    //     return $this->belongsTo(Review::class);
-    // }
-
-    // //いいねが既にされているかを確認
-    // public function like_exist($id, $review_id)
-    // {
-    //     //  Likesテーブルのレコードにユーザーidと投稿idが一致するものを取得
-    //     $exist = Review::where('user_id', '=', $id)->where('review_id', '=', $review_id)->get();
-
-    //     // レコード（$exist）が存在するなら
-    //     if (!$exist->isEmpty()) {
-    //         return true;
-    //     } else {
-    //     // レコード（$exist）が存在しないなら
-    //         return false;
-    //     }
-    // }
+    
 }
