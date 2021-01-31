@@ -17,11 +17,11 @@ class CreateLikesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             //usersテーブルのidを参照
-            $table->integer('reviews_id')->unsigned();;
+            $table->integer('review_id')->unsigned();;
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('reviews_id')->references('id')->on('reviews')->onDelete('cascade');
+            $table->foreign('review_id')->references('id')->on('reviews')->onDelete('cascade');
         });
     }
 
