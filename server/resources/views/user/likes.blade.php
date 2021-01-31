@@ -9,14 +9,13 @@
 
     <div class="col-sm-9 ">
         
-        
         <div class="card mt-5 mb-3">
             
             <div class="card-body">
                 <a class="h4 " href=# ><i class="fas fa-user-circle pr-2"></i>harukaさん</a>
                 <h5 class="card-title border-bottom">新政  ★★★★★
                 </h5>
-            <img src="https://img15.shop-pro.jp/PA01209/633/product/87285016_o7.png?cmsp_timestamp=20200313172105" alt="" width="50px" height="50px" border="0" />
+            <img src="https://www.sasesaketen.com/upload/save_image/0214211010_5e468e220defc.jpg" alt="" width="50px" height="50px" border="0" />
             <span class="all-rating">
             味の濃さ 3 /香りの強さ 5 
             </span>

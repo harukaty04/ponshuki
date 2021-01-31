@@ -45,7 +45,12 @@ Route::prefix('users')->name('users.')->group(function () {
 
 //sakeAPI
 Route::get(' https://muro.sakenowa.com/sakenowa-data/api/brands');
-// Route::get('/autocomplete', 'SearchController@index')->name('autocomplete.index');
 Route::get('/search/sake', 'SearchController@getSake');
+Route::get('/search/sake', 'ReviewsController@getSake');
+
+//いいね
+Route::post('/like', 'ReviewsController@like')->name('reviews.like');
+
+
 
 

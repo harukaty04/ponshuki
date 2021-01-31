@@ -44,7 +44,7 @@ src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
                 <a class="badge badge-pill badge-light ">爽酒</a>
                 <img src="https://mutsu8000.com/wp/wp-content/uploads/pic_8000-0500-640x960.jpg" alt="" width="50px" height="50px"  />
             <span class="all-rating">
-            味の濃さ ★★★☆☆ /香りの強さ ★★★☆☆ 
+            味の濃さ ３ /香りの強さ ３ 
             </span>
             <p class="card-text mt-3">近年の日本酒の味の潮流である「芳醇旨口」を代表する酒。
                 若き15代目当主の高木顕統さんが酒造りを統括し、米の旨みと甘み、エレガントな香り、心地よい余韻を感じる酒に仕上げている。
@@ -63,7 +63,7 @@ src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
                 <h5 class="card-title border-bottom">陸奥八仙  ★★★☆☆</h5>
             <img src="https://mutsu8000.com/wp/wp-content/uploads/pic_8000-0500-640x960.jpg" alt="" width="50px" height="50px"  />
             <span class="all-rating">
-            味の濃さ★★★☆☆ /香りの強さ ★★★☆☆
+            味の濃さ４ /香りの強さ ３
             </span>
             <p class="card-text mt-3">近年の日本酒の味の潮流である「芳醇旨口」を代表する酒。
                 若き15代目当主の高木顕統さんが酒造りを統括し、米の旨みと甘み、エレガントな香り、心地よい余韻を感じる酒に仕上げている。
@@ -83,7 +83,7 @@ src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
                 <span class="badge badge-pill badge-light">爽酒</span>
             <img src="https://www.hasegawasaketen.com/eshop/html/upload/save_image/03140932_58c73a09e0629.jpg" alt="" width="50px" height="50px"  />
             <span class="all-rating">
-            味の濃さ ★★★☆☆/香りの強さ ★★★☆☆
+            味の濃さ 2 /香りの強さ 4
             </span>
             <p class="card-text mt-3">近年の日本酒の味の潮流である「芳醇旨口」を代表する酒。
                 若き15代目当主の高木顕統さんが酒造りを統括し、米の旨みと甘み、エレガントな香り、心地よい余韻を感じる酒に仕上げている。
@@ -102,7 +102,7 @@ src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
                 <span class="badge badge-pill badge-light">爽酒</span>
                 <img src="https://mutsu8000.com/wp/wp-content/uploads/pic_8000-0500-640x960.jpg" alt="" width="50px" height="50px"  />
             <span class="all-rating">
-            味の濃さ ★★★☆☆ /香りの強さ  ★★★☆☆
+            味の濃さ 3 /香りの強さ  4
             </span>
             <p class="card-text mt-3">近年の日本酒の味の潮流である「芳醇旨口」を代表する酒。
                 若き15代目当主の高木顕統さんが酒造りを統括し、米の旨みと甘み、エレガントな香り、心地よい余韻を感じる酒に仕上げている。

@@ -10,7 +10,7 @@
 
     <div class="profile-card card col-sm-9 mt-4">
     {{-- フォームの作成 --}}
-    <form action="{{ route('') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route( 'user.profile',['id' => Auth::user()->id] ) }}" method="POST" enctype="multipart/form-data">
         @csrf
         <input type="file" name="image">
         <button type='submit' class="btn btn-primary">submit</button>
