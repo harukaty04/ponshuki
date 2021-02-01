@@ -40,7 +40,7 @@
                         @if($review->image == null)
                         <img src="/uploads/noimage.jpg" width="100px" height="100px">
                         @else
-                        <img src="/uploads/image/{{ $review->image }}" width="100px" height="100px">
+                        <img src="/uploads/{{ $review->image }}" width="100px" height="100px">
                         @endif  
                         
                         <span class="all-rating">

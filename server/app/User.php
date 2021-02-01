@@ -51,10 +51,10 @@ class User extends Authenticatable
         return $this->hasMany(Review::class);
     }
 
-    public function likes()
+    public function likes(): BelongsToMany
     {
-        return $this->hasMany('App\Like');
+        // return $this->hasMany('App\Like');
+        return $this->belongsToMany('App\Like', 'likes')->withTimestamps();
     }
 
-    
 }

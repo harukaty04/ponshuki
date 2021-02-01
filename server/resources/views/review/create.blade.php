@@ -1,7 +1,4 @@
-
-
 <div class="pr-3">
-
     <div class="card mt-3">
         <div class="card-body">
             <div class="card-text">
@@ -13,8 +10,7 @@
         </div>
     </div>
 
-
-    {{-- test --}}
+    {{-- レビューの表示 --}}
     @foreach($reviews as $review)
     <div class="card mt-5 mb-3 ">
         <div class="card-body ">
@@ -73,9 +69,9 @@
         @if($review->image == null)
         <img src="/uploads/noimage.jpg" width="100px" height="100px">
         @else
-        <img src="/uploads/image/{{ $review->image }}" width="100px" height="100px">
+        <img src="/uploads/{{ $review->image }}" width="100px" height="100px">
         @endif     
-        {{-- <img src="server/public/uploads{{ $reviews->image }}" alt="" width="50px" height="50px" /> --}}
+    
         <span class="all-rating">
         味の濃さ  {{ $review->taste_intensity}} /香りの強さ  {{ $review->scent_strength}}
         </span>

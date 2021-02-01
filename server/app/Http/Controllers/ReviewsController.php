@@ -62,7 +62,7 @@ class ReviewsController extends Controller
             
             $file = $request->image;
             $fileName = time() . $file->getClientOriginalName();
-            $target_path = public_path('/uploads/image/');
+            $target_path = public_path('/uploads');
             $file->move($target_path, $fileName);
         }
 

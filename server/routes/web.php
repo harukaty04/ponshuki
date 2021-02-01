@@ -41,15 +41,14 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::get('/{id}', 'UserController@show')->name('profile');
 });
 
-//画像投稿
-
 //sakeAPI
 Route::get(' https://muro.sakenowa.com/sakenowa-data/api/brands');
 Route::get('/search/sake', 'SearchController@getSake');
 Route::get('/search/sake', 'ReviewsController@getSake');
 
 //いいね
-Route::post('/like', 'ReviewsController@like')->name('reviews.like');
+Route::post('/likes', 'ReviewsController@like')->name('reviews.like');
+Route::get('/{name}/likes', 'UserController@likes')->name('likes');
 
 
 

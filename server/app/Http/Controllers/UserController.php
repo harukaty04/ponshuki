@@ -48,4 +48,15 @@ class UserController extends Controller
         return view('user.edit_profile', ['reviews' => $users]); 
     }
 
+
+    public function likes(string $name)
+    {
+        $user = User::where('name', $name)->first();
+        $reviews = $user->likes->sortByDesc('created_at');
+        
+        return view('user.likes', [
+            'user' => $user,
+            'reviews' => $reviews,
+        ]);
+    }
 }
