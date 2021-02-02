@@ -16,9 +16,13 @@ class LikesController extends Controller
         // $reviews = Review::withCount('likes')->orderBy('created_at', 'desc') // 投稿作成日が新しい順に並べる
         //     ->get();
         $current_user_id = Auth::id();
-        $user_likes_review_ids = Like::where('user_id', Auth::id())->get()->pluck('review_id');
-        $user_likes_reviews = Review::whereIn('id', $user_likes_review_ids)->get();
+        // $user_likes_review_ids = Like::where('user_id', Auth::id())->get()->pluck('review_id');
+        // $user_likes_reviews = Review::whereIn('id', $user_likes_review_ids)->get();
+
+        $user_likes_reviews = Review::withCount('likes')->where('user_id', Auth::id())->get();
+
         // dd(count($user_likes_reviews));
+
         return view('user.likes',[
             'reviews' => $user_likes_reviews,
             'current_user_id' => $current_user_id
