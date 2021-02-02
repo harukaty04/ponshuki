@@ -45,7 +45,7 @@ class UserController extends Controller
         public function edit(Request $request)
     {
         $users = User::find($request->id);
-        return view('user.edit_profile', ['reviews' => $users]); 
+        return view('user.edit_profile', ['users' => $users]); 
     }
 
 
@@ -53,10 +53,41 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->first();
         $reviews = $user->likes->sortByDesc('created_at');
-        
+
         return view('user.likes', [
             'user' => $user,
             'reviews' => $reviews,
         ]);
     }
+
+    public function editProfile(Request $request)
+    {
+        $inputs = $request->all();
+        // $inputsが空でなければ実行
+        if ( !empty($inputs) ) {
+
+            // ログイン中のユーザーIDを取得
+            $current_user_id = Auth::user()->id;
+            
+            $file = $request->image;
+            //アップロードされたファイル名を取得
+            $fileName = time() . $file->getClientOriginalName();
+            $target_path = public_path('/uploads');
+            $file->move($target_path, $fileName);
+        }
+        
+        $value = [
+            'name'         => $current_user_id,
+            'image'           => (string) $fileName,
+        ];
+        dd($request->toArray());
+        
+        User::create($value);
+
+        //return viewだと引数が渡っていないためredirect処理を追記
+        
+        return redirect()->route('top.profile');
+    }
+    
 }
+

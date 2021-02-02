@@ -37,7 +37,7 @@
                 <a class="h4 " href=# ><i class="fas fa-user-circle pr-2"></i>harukaさん</a>
                 <h5 class="card-title border-bottom">新政  ★★★☆☆</h5>
                 <a class="badge badge-pill badge-light ">爽酒</a>
-                <img src="/uploads/noimage.jpg" alt="" width="50px" height="50px"  />
+                <img src="/uploads/noimage.jpg" alt="" width="100px" height="100px"  />
             <span class="all-rating">
             味の濃さ ３ /香りの強さ ３ 
             </span>
@@ -56,7 +56,7 @@
             <div class="card-body">
                 <a class="h4 " href=# ><i class="fas fa-user-circle pr-2"></i>sayakaさん</a>
                 <h5 class="card-title border-bottom">陸奥八仙  ★★★☆☆</h5>
-            <img src="/uploads/noimage.jpg" alt="" width="50px" height="50px"  />
+            <img src="/uploads/noimage.jpg" alt="" width="100px" height="100px"  />
             <span class="all-rating">
             味の濃さ４ /香りの強さ ３
             </span>
@@ -76,7 +76,7 @@
                 <a class="h4 " href=# ><i class="fas fa-user-circle pr-2"></i>tarou さん</a>
                 <h5 class="card-title border-bottom">仙禽  ★★★☆☆</h5>
                 <span class="badge badge-pill badge-light">爽酒</span>
-            <img src="/uploads/noimage.jpg" alt="" width="50px" height="50px"  />
+            <img src="/uploads/noimage.jpg" alt="" width="100px" height="100px"  />
             <span class="all-rating">
             味の濃さ 2 /香りの強さ 4
             </span>
@@ -95,7 +95,7 @@
                 <a class="h4 " href=# ><i class="fas fa-user-circle pr-2"></i>jirou さん</a>
                 <h5 class="card-title border-bottom">新政  ★★★☆☆</h5>
                 <span class="badge badge-pill badge-light">爽酒</span>
-                <img src="/uploads/noimage.jpg" alt="" width="50px" height="50px"  />
+                <img src="/uploads/noimage.jpg" alt="" width="100px" height="100px"  />
             <span class="all-rating">
             味の濃さ 3 /香りの強さ  4
             </span>

@@ -35,12 +35,8 @@ class ReviewsController extends Controller
         if ( Auth::check() ) {
             $current_user_name = Auth::user()->name;
         } else {
-            $current_user_name = '';
-
-            
+            $current_user_name = '';  
         }
-        
-
         return view('top.index', compact('reviews', 'current_user_name', 'current_user_id'));
         
     }
@@ -56,11 +52,12 @@ class ReviewsController extends Controller
 
         // $inputsが空でなければ実行
         if ( !empty($inputs) ) {
+
             // ログイン中のユーザーIDを取得
             $current_user_id = Auth::user()->id;
-
             
             $file = $request->image;
+            //アップロードされたファイル名を取得
             $fileName = time() . $file->getClientOriginalName();
             $target_path = public_path('/uploads');
             $file->move($target_path, $fileName);

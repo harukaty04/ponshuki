@@ -98,14 +98,6 @@
                         <span class="like-counter">{{$review->likes_count}}</span>
                         </span><!-- /.likes -->
                     @endif
-                
-
-                {{-- @guest
-                    <span class="likes">
-                        <i class="like-heart fas fa-heart heart"></i>
-                        <span class="like-counter">{{$review->likes_count}}</span>
-                    </span><!-- /.likes -->
-                @endguest --}}
             </div>
         </div>
         

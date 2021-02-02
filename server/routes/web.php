@@ -16,11 +16,10 @@ Auth::routes();
 # ゲストユーザーログイン
 Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
 
-
-
 # ユーザー投稿関係(index, show)
 Route::get('review/{review}', 'ReviewsController@show')->name('review.show')->where('article', '[0-9]+'); 
 Route::get('/','ReviewsController@index')->name('top.index');
+
 //画像投稿でも使用
 Route::resource('review', 'ReviewsController', ['only' => ['create', 'store', 'destroy']]);
 Route::post('/create','ReviewsController@create')->name('top.create');
@@ -29,6 +28,7 @@ Route::post('/review/edit', 'ReviewsController@update')->name('review.update');
 Route::post('/review/destroy','ReviewsController@destroy')->name('review.destroy');
 
 # 編集機能作成
+Route::post('/edit_profile', 'UserController@editProfile')->name('edit.profile');
 
 // 検索,分類ごとのページ(表示）
 Route::get('/search','SearchController@index')->name('user.searchpage');
