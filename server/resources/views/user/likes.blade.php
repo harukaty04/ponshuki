@@ -83,27 +83,29 @@
                     <span class="badge badge-pill badge-light ">#爽酒</span>
 
         {{-- いいね機能の追加 --}}
-                @auth
+                
                     <!-- Review.phpに作ったisLikedByメソッドをここで使用 -->
+                    {{-- ログインユーザーがいいねをしていなかった場合黒いハートを表示 --}}
                     @if (!$review->isLikedBy(Auth::user()))
                         <span class="likes">
                             <i  class="like-heart fas fa-heart like-toggle" data-review-id="{{ $review->id }}"></i>
                         <span class="like-counter">{{$review->likes_count}}</span>
                         </span><!-- /.likes -->
+                        {{-- ログインユーザーがいいねをしていた場合赤いハートを表示 --}}
                     @else
                         <span class="likes">
                             <i  class="like-heart fas fa-heart heart like-toggle liked" data-review-id="{{ $review->id }}"></i>
                         <span class="like-counter">{{$review->likes_count}}</span>
                         </span><!-- /.likes -->
                     @endif
-                @endauth
+                
 
-                @guest
+                {{-- @guest
                     <span class="likes">
                         <i class="like-heart fas fa-heart heart"></i>
                         <span class="like-counter">{{$review->likes_count}}</span>
                     </span><!-- /.likes -->
-                @endguest
+                @endguest --}}
             </div>
         </div>
         
