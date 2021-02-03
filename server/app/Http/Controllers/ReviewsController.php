@@ -85,8 +85,10 @@ class ReviewsController extends Controller
     {
         //'reviews'をキーとして使えるように設定
         $review = Review::find($review_id);
+        // dd($review->toArray());
 
         return view('review.edit', ['review' => $review]); 
+        
     }
 
 
@@ -100,6 +102,7 @@ class ReviewsController extends Controller
         $reviews->evaluation = $request->evaluation;
         $reviews->content = $request->content;
         $reviews->update();
+        
         return redirect()->route('top.index');
     }
 
