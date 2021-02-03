@@ -50,6 +50,9 @@ Route::get('/search/sake', 'ReviewsController@getSake');
 Route::post('/likes', 'ReviewsController@like')->name('reviews.like');
 Route::get('/{name}/likes', 'UserController@likes')->name('likes');
 
+//プロフィール写真設定
+
+
 
 
 

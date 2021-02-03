@@ -70,7 +70,7 @@
         <img src="/uploads/noimage.jpg" width="100px" height="100px">
         @else
         <img src="/uploads/{{ $review->image }}" width="100px" height="100px">
-        @endif     
+        @endif 
     
         <span class="all-rating">
         味の濃さ  {{ $review->taste_intensity}} /香りの強さ  {{ $review->scent_strength}}

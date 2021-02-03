@@ -11,12 +11,13 @@
         <div class="profile-card card mt-4">
             <div class="card-body  flex-row ml-3 mr-3 mb-3">
                 <p class="float-right"><a href="{{ route('user.edit_profile') }}" class="btn btn-outline-primary wf-mplus1p">プロフィールを編集</a></p>
+                
+                {{-- プロフィールを設定してなければnoimageアイコン、していれば表示 --}}
                 {{-- @if($user->image == null)
                     <i class="fas fa-user-circle fa-6x mr-1 "></i>
                 @else
                     <img src="/uploads/{{ $user->image }}" width="100px" height="100px">
-                @endif     
-                --}}
+                @endif      --}}
                 
                 
                 <i class="fas fa-user-circle fa-6x mr-1 "></i>
@@ -37,6 +38,7 @@
                 好きなお酒
                 タグ
                 </div> --}}
+                
             </div> 
         </div>
             

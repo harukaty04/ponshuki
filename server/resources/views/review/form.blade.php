@@ -17,10 +17,13 @@ src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
 
     <div class="nihonshu-image pl-5">
             <label class="nihonshu-image">画像</label>
-            <input type="file" id="image" name="image" accept="image/jpeg, image/png"  class="pt-3 pl-5">
+            <input type="file" id="image" name="image" accept="image/jpeg, image/png"  class="pt-3 pl-5" value="{{ $review->image ?? old('image') }}">
             <iframe name="form_response" style="display:none;" ></iframe>
     </div>
-    
+    {{-- @if(empty($review))
+        <img src={{$review->image}}>
+    @endif
+    ---}}
     <div class="taste-ev ">
         <label class="taste-evl pl-5 wf-mplus1p">味の濃さ</label>
         <div class="ratebutton ml-5 pl-5">

@@ -30,7 +30,6 @@ class ReviewsController extends Controller
         // foreach ($reviews as $review) {
         //     // 取得したReviewsのうち、1件に対して->userとすることで
         //     // belong_toでつながっているuserモデルにアクセスすることができる
-        //     dd($review->user->name);
         // }
         if ( Auth::check() ) {
             $current_user_name = Auth::user()->name;
@@ -116,7 +115,6 @@ class ReviewsController extends Controller
     public function store(Request $request)
         {
         $request->file('file')->store('');
-
         }
 
         public function getSake()
@@ -167,11 +165,7 @@ class ReviewsController extends Controller
             ];
             // dd($param);
             return response()->json($param); //6.JSONデータをjQueryに返 す
-
             
         }
-
-
-        
     }
 
