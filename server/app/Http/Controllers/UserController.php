@@ -63,30 +63,36 @@ class UserController extends Controller
     public function editProfile(Request $request)
     {
         $inputs = $request->all();
+        // ログイン中のユーザーを取得
+        $current_user = Auth::user();
+
         // $inputsが空でなければ実行
         if ( !empty($inputs) ) {
-
-            // ログイン中のユーザーIDを取得
-            $current_user_id = Auth::user()->id;
-            
             $file = $request->image;
             //アップロードされたファイル名を取得
             $fileName = time() . $file->getClientOriginalName();
-            $target_path = public_path('/uploads');
+            $target_path = public_path('/uploads-profile');
             $file->move($target_path, $fileName);
-        }
-        
-        $value = [
-            'name'         => $current_user_id,
-            'image'           => (string) $fileName,
-        ];
-        dd($request->toArray());
-        
-        User::create($value);
 
-        //return viewだと引数が渡っていないためredirect処理を追記
-        
-        return redirect()->route('top.profile');
+            // dd($current_user);
+            // $user = new User();
+            // $user = User::where('id', $current_user->id)->first();
+            // dd($user->toArray());
+            $user = User::where('id', $current_user->id)->first();
+            $user->update([
+                'name'  => $inputs['users_name'],
+                'image' => $fileName
+            ]);
+            // $user->id = $current_user->id;
+            // $user->name = $current_user->name;
+            // $user->email = $current_user->email;
+            // $user->password = $current_user->password;
+            // $user->image = (string) $fileName;
+            // dd($user->toArray());
+            // $user->save();
+        }
+
+        return redirect()->route('user.profile', ['id' => $current_user->id]);
     }
     
 }
