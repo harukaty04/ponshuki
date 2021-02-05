@@ -18,6 +18,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        
     }
 
     /**
@@ -35,17 +36,30 @@ class UserController extends Controller
         $reviews = Review::where('user_id', $current_user_id) //$userによる投稿を取得
             ->orderBy('created_at', 'desc') // 投稿作成日が新しい順に並べる
             ->get();
+            
+            $current_user = Auth::user();
+            $user = User::where('id', $current_user->id)->first();
 
+            
         return view('user.profile', [
             'current_user_name' => $current_user_name,
             'reviews' => $reviews,
+            'user' => $user,
+            
         ]);
     }
 
         public function edit(Request $request)
     {
-        $users = User::find($request->id);
-        return view('user.edit_profile', ['users' => $users]); 
+        $current_user_id = Auth::id();
+
+        $user = User::find($request->id);
+        
+        // dd($user);
+        return view('user.edit_profile', [
+            'user' => $user, 
+            'current_user_id' => $current_user_id,
+        ]); 
     }
 
 
@@ -65,6 +79,8 @@ class UserController extends Controller
         $inputs = $request->all();
         // ログイン中のユーザーを取得
         $current_user = Auth::user();
+        $current_user_id = Auth::id();
+
 
         // $inputsが空でなければ実行
         if ( !empty($inputs) ) {
@@ -80,7 +96,7 @@ class UserController extends Controller
             // dd($user->toArray());
             $user = User::where('id', $current_user->id)->first();
             $user->update([
-                'name'  => $inputs['users_name'],
+                'name'  => $inputs['name'],
                 'image' => $fileName
             ]);
             // $user->id = $current_user->id;
@@ -91,8 +107,12 @@ class UserController extends Controller
             // dd($user->toArray());
             // $user->save();
         }
-
-        return redirect()->route('user.profile', ['id' => $current_user->id]);
+        
+        
+        return redirect()->route('user.profile', [
+            'id' => $current_user->id,
+            'current_user_id' => $current_user_id
+            ]);
     }
     
 }
