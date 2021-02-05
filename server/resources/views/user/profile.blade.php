@@ -13,14 +13,11 @@
                 <p class="float-right"><a href="{{ route('user.edit_profile') }}" class="btn btn-outline-primary wf-mplus1p">プロフィールを編集</a></p>
                 
                 {{-- プロフィールを設定してなければnoimageアイコン、していれば表示 --}}
-                {{-- @if($user->image == null)
+                @if($user->image === null)
                     <i class="fas fa-user-circle fa-6x mr-1 "></i>
                 @else
                     <img src="/uploads/{{ $user->image }}" width="100px" height="100px">
-                @endif      --}}
-                
-                
-                <i class="fas fa-user-circle fa-6x mr-1 "></i>
+                @endif     
                 {{-- <div href="{{ route('user.edit_profile') }}" class="text-dark wf-mplus1p d-flex align-items-end"> --}}
                     <span class="user_name h2 ">{{ $current_user_name }}</span>
                 {{-- </div> --}}
