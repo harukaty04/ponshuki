@@ -11,10 +11,10 @@
         @include('shared.side-bar')
     </div>
     <div class="col-sm-9">
-        <form action="GET">
+        <form method="GET" action="{{ route('user.searchpage') }}">
             @csrf
             <div  class="input-group mt-5">
-                <input type="text" name="name" class="form-control" action="{{url('/search')}}" placeholder="日本酒の名前" autocomplete="on"  list="sake-data">
+                <input type="text" name="keyword" class="form-control" value="{{$keyword}}" placeholder="日本酒の名前" autocomplete="on"  list="sake-data">
                 <datalist id="sake-data"></datalist>
 
                 <span class="input-group-btn vertical-align">
@@ -27,6 +27,7 @@
             src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
             <script type="text/javascript"
             src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+
 
 {{-- 記事の表示 --}}
 @foreach($reviews as $review)

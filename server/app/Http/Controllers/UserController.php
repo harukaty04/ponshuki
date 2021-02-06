@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Review;
-use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
