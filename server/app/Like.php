@@ -18,5 +18,9 @@ class Like extends Model
         return $this->belongsTo(Review::class);
     }
     
-    
+    public static $rules = [
+        'name'            => 'required|max: 30',
+        'ponshu_image'      => 'image|file',
+
+    ];
 }

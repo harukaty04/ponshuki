@@ -5,10 +5,11 @@
 /public/mix-manifest.json
 /public/storage
 /storage/*.key
+/public/uploads
 /vendor
 .env
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
 npm-debug.log
-yarn-error.log
+yarn-error.lo

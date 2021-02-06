@@ -25,7 +25,7 @@ class Review extends Model
         'taste_intensity' => 'required',
         'scent_strength'  => 'required',
         'evaluation'      => 'required',
-        'ponshu_image'      => 'image|file',
+        'ponshu_image'    => 'image|file',
 
     ];
 

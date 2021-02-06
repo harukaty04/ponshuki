@@ -6,11 +6,9 @@ namespace App;
 use App\Mail\BareMail;
 use App\Notifications\PasswordResetNotification;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-
-
-
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -24,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','image'
     ];
 
     /**
@@ -45,16 +43,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // public static $rules = [
+    //     'id'          => 'required',
+    //     'name'            => 'required|max: 30',
+    //     'email'         => 'required|max: 30',
+    //     'password'  => 'required',
+    //     'image'      => 'image|file',
+    // ];
+
     public function reviews()
     {
         return $this->hasMany('App\Reviews');
         return $this->hasMany(Review::class);
     }
 
-    public function likes()
+    public function likes(): BelongsToMany
     {
-        return $this->hasMany('App\Like');
+        // return $this->hasMany('App\Like');
+        return $this->belongsToMany('App\Like', 'likes')->withTimestamps();
     }
 
-    
+
 }
+

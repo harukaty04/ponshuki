@@ -9,13 +9,21 @@
     
     <div class="col-sm-9">
         <div class="profile-card card mt-4">
-            <div class="card-body  flex-row ml-3 mr-3">
-                <p class="float-right "><a href="{{ route('user.edit_profile') }}" class="btn btn-outline-primary wf-mplus1p">プロフィールを編集</a></p>
-                <i class="fas fa-user-circle fa-6x mr-1 "></i>
-                <a href="{{ route('user.edit_profile') }}" class="text-dark wf-mplus1p d-flex align-items-end">
-                    <h3 class="pl-3 pt-6 ">{{ $current_user_name }}</h3>
-                </a>
-                <div class="font-weight-bold">
+            <div class="card-body  flex-row ml-3 mr-3 mb-3">
+                <p class="float-right"><a href="{{ route('user.edit_profile') }}" class="btn btn-outline-primary wf-mplus1p">プロフィールを編集</a></p>
+                
+                {{-- プロフィールを設定してなければnoimageアイコン、していれば表示 --}}
+                @if($user->image === null)
+                    <i class="fas fa-user-circle fa-6x mr-1 "></i>
+                @else
+                    <img src="/uploads/{{ $user->image }}" width="100px" height="100px">
+                @endif     
+                {{-- <div href="{{ route('user.edit_profile') }}" class="text-dark wf-mplus1p d-flex align-items-end"> --}}
+                    <span class="user_name h2 ">{{ $current_user_name }}</span>
+                {{-- </div> --}}
+
+                
+                {{-- <div class="font-weight-bold">
                     <a href="" class="text-muted">
                         10 フォロー
                     </a>
@@ -26,7 +34,8 @@
                 <div class="font-weight-lighter">
                 好きなお酒
                 タグ
-                </div>
+                </div> --}}
+                
             </div> 
         </div>
             
@@ -40,7 +49,7 @@
                         @if($review->image == null)
                         <img src="/uploads/noimage.jpg" width="100px" height="100px">
                         @else
-                        <img src="/uploads/image/{{ $review->image }}" width="100px" height="100px">
+                        <img src="/uploads/{{ $review->image }}" width="100px" height="100px">
                         @endif  
                         
                         <span class="all-rating">

@@ -5,11 +5,6 @@
 @section('title', 'ponshuki')
 
 @section('content')
-<script type="text/javascript"
-src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script type="text/javascript"
-src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
-
 
 <div class="row p-side-origin">
     <div class="col-sm-3">
@@ -28,12 +23,12 @@ src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
             </div>
         </form>
         <script src="{{ mix('/js/autocomplete.js') }}"></script>
+        <script type="text/javascript"
+            src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+            <script type="text/javascript"
+            src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
 
 
-
-        {{-- @foreach ( $sake_lists as $sake )
-            {{ $sake['name'] }}
-        @endforeach --}}
         {{-- 以下テスト、通常時は総合評価が高い順番に並んでいる --}}
         
         <div class="card mt-5 mb-3">
@@ -42,7 +37,7 @@ src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
                 <a class="h4 " href=# ><i class="fas fa-user-circle pr-2"></i>harukaさん</a>
                 <h5 class="card-title border-bottom">新政  ★★★☆☆</h5>
                 <a class="badge badge-pill badge-light ">爽酒</a>
-                <img src="https://mutsu8000.com/wp/wp-content/uploads/pic_8000-0500-640x960.jpg" alt="" width="50px" height="50px"  />
+                <img src="/uploads/noimage.jpg" alt="" width="100px" height="100px"  />
             <span class="all-rating">
             味の濃さ ３ /香りの強さ ３ 
             </span>
@@ -61,7 +56,7 @@ src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
             <div class="card-body">
                 <a class="h4 " href=# ><i class="fas fa-user-circle pr-2"></i>sayakaさん</a>
                 <h5 class="card-title border-bottom">陸奥八仙  ★★★☆☆</h5>
-            <img src="https://mutsu8000.com/wp/wp-content/uploads/pic_8000-0500-640x960.jpg" alt="" width="50px" height="50px"  />
+            <img src="/uploads/noimage.jpg" alt="" width="100px" height="100px"  />
             <span class="all-rating">
             味の濃さ４ /香りの強さ ３
             </span>
@@ -81,7 +76,7 @@ src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
                 <a class="h4 " href=# ><i class="fas fa-user-circle pr-2"></i>tarou さん</a>
                 <h5 class="card-title border-bottom">仙禽  ★★★☆☆</h5>
                 <span class="badge badge-pill badge-light">爽酒</span>
-            <img src="https://www.hasegawasaketen.com/eshop/html/upload/save_image/03140932_58c73a09e0629.jpg" alt="" width="50px" height="50px"  />
+            <img src="/uploads/noimage.jpg" alt="" width="100px" height="100px"  />
             <span class="all-rating">
             味の濃さ 2 /香りの強さ 4
             </span>
@@ -100,7 +95,7 @@ src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
                 <a class="h4 " href=# ><i class="fas fa-user-circle pr-2"></i>jirou さん</a>
                 <h5 class="card-title border-bottom">新政  ★★★☆☆</h5>
                 <span class="badge badge-pill badge-light">爽酒</span>
-                <img src="https://mutsu8000.com/wp/wp-content/uploads/pic_8000-0500-640x960.jpg" alt="" width="50px" height="50px"  />
+                <img src="/uploads/noimage.jpg" alt="" width="100px" height="100px"  />
             <span class="all-rating">
             味の濃さ 3 /香りの強さ  4
             </span>

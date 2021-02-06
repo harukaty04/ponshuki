@@ -30,17 +30,12 @@ class ReviewsController extends Controller
         // foreach ($reviews as $review) {
         //     // 取得したReviewsのうち、1件に対して->userとすることで
         //     // belong_toでつながっているuserモデルにアクセスすることができる
-        //     dd($review->user->name);
         // }
         if ( Auth::check() ) {
             $current_user_name = Auth::user()->name;
         } else {
-            $current_user_name = '';
-
-            
+            $current_user_name = '';  
         }
-        
-
         return view('top.index', compact('reviews', 'current_user_name', 'current_user_id'));
         
     }
@@ -56,13 +51,14 @@ class ReviewsController extends Controller
 
         // $inputsが空でなければ実行
         if ( !empty($inputs) ) {
+
             // ログイン中のユーザーIDを取得
             $current_user_id = Auth::user()->id;
-
             
             $file = $request->image;
+            //アップロードされたファイル名を取得
             $fileName = time() . $file->getClientOriginalName();
-            $target_path = public_path('/uploads/image/');
+            $target_path = public_path('/uploads');
             $file->move($target_path, $fileName);
         }
 
@@ -88,8 +84,10 @@ class ReviewsController extends Controller
     {
         //'reviews'をキーとして使えるように設定
         $review = Review::find($review_id);
+        // dd($review->toArray());
 
         return view('review.edit', ['review' => $review]); 
+        
     }
 
 
@@ -103,6 +101,7 @@ class ReviewsController extends Controller
         $reviews->evaluation = $request->evaluation;
         $reviews->content = $request->content;
         $reviews->update();
+        
         return redirect()->route('top.index');
     }
 
@@ -116,7 +115,6 @@ class ReviewsController extends Controller
     public function store(Request $request)
         {
         $request->file('file')->store('');
-
         }
 
         public function getSake()
@@ -167,11 +165,7 @@ class ReviewsController extends Controller
             ];
             // dd($param);
             return response()->json($param); //6.JSONデータをjQueryに返 す
-
             
         }
-
-
-        
     }
 
