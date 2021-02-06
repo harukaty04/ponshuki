@@ -4,13 +4,28 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Review;
 
 class SearchController extends Controller
 {
     public function index()
     {
-        return view('user.searchpage');
+        $reviews = Review::withCount('likes')->orderBy('created_at', 'desc') // 投稿作成日が新しい順に並べる
+            ->get();
+        $current_user_id = Auth::id();
+
+        if ( Auth::check() ) {
+            $current_user_name = Auth::user()->name;
+        } else {
+            $current_user_name = '';  
+        }
+        
+        //おすすめ順（総合評価順）に並ぶようにする
+        return view('user.searchpage', compact('reviews', 'current_user_name', 'current_user_id'));
+    //     return view('user.searchpage')->with('reviews', $reviews);
     }
+
 
     public function getSake()
     {
