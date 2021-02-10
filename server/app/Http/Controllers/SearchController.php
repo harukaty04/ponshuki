@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Review;
-use App\User;
+use App\Models\Review;
+use App\Models\User;
 
 class SearchController extends Controller
 {
