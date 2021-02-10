@@ -3,16 +3,10 @@
 namespace Tests;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use App\Http\Requests\CreateTask;
-use Carbon\Carbon;
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
-
-abstract class ReviewTest extends TestCase
+abstract class TestCase extends BaseTestCase
 {
-    
-    use RefreshDatabase;
+    use CreatesApplication;
 
 /**
      * 各テストメソッドの実行前に呼ばれる
