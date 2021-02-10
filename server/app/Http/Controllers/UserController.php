@@ -2,24 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Review;
-use App\User;
+use App\Models\Review;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
 {
+    private $current_user;
+
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * Constructor
      */
     public function __construct()
     {
+        // ログイン中のユーザー情報を取得する
+        $this->middleware(function ($request, $next) {
+            $this->current_user = Auth::user();
+            return $next($request);
+        });
+
         $this->middleware('auth');
-        
     }
+
 
     /**
      * TODO: プロフィール表示はこっちのメソッドを使うこと
@@ -27,35 +33,33 @@ class UserController extends Controller
      */
     public function show(int $id)
     {
-        $current_user_id = Auth::id();
+        if ($id !== $this->current_user->id) $this->current_user = User::find($id)->get();
 
-        if ( $id == $current_user_id) $current_user_name = Auth::user()->name;
-        else $current_user_name = User::find($id)->name;
-        
          //idが、リクエストされた$userのidと一致するuserを取得
-        $reviews = Review::where('user_id', $current_user_id) //$userによる投稿を取得
+        $reviews = Review::where('user_id', $this->current_user->id) //$userによる投稿を取得
             ->orderBy('created_at', 'desc') // 投稿作成日が新しい順に並べる
             ->get();
-            
-            $current_user = Auth::user();
-            $user = User::where('id', $current_user->id)->first();
 
-            
         return view('user.profile', [
-            'current_user_name' => $current_user_name,
-            'reviews' => $reviews,
-            'user' => $user,
-            
+            'current_user_name' => $this->current_user->name,
+            'reviews'           => $reviews,
+            'user'              => $this->current_user,
         ]);
     }
 
-        public function edit(Request $request)
+
+    /**
+     * ユーザーのプロフィール編集ページを表示
+     * TODO: $idを受け取ってそのidのユーザープロフィールにすること
+     * 
+     * @param Request $request
+     */
+    public function edit(Request $request)
     {
         $current_user_id = Auth::id();
-
-        $user = User::find($request->id);
+        $user = $this->current_user->name;
+        // $user = User::find($request->id);
         
-        // dd($user);
         return view('user.edit_profile', [
             'user' => $user, 
             'current_user_id' => $current_user_id,
@@ -63,57 +67,78 @@ class UserController extends Controller
     }
 
 
+    /**
+     * ユーザーがお気に入り登録したReviewsを表示する
+     *
+     * @param string $name
+     */
     public function likes(string $name)
     {
         $user = User::where('name', $name)->first();
         $reviews = $user->likes->sortByDesc('created_at');
 
         return view('user.likes', [
-            'user' => $user,
+            'user'    => $user,
             'reviews' => $reviews,
         ]);
     }
 
+
+    /**
+     * プロフィール編集
+     * NOTE: プロフィール画像・nameを編集する
+     *
+     * @param Request $request
+     */
     public function editProfile(Request $request)
     {
         $inputs = $request->all();
+
         // ログイン中のユーザーを取得
         $current_user = Auth::user();
-        $current_user_id = Auth::id();
 
+        $user = User::where('id', $current_user->id)->first();
 
-        // $inputsが空でなければ実行
-        if ( !empty($inputs) ) {
-            $file = $request->image;
-            //アップロードされたファイル名を取得
-            $fileName = time() . $file->getClientOriginalName();
-            $target_path = public_path('/uploads-profile');
-            $file->move($target_path, $fileName);
+        if ( $request->has('name') && $request->has('image') ) {
+            $file_name = $this->uploadImageToPublic($request);
 
-            // dd($current_user);
-            // $user = new User();
-            // $user = User::where('id', $current_user->id)->first();
-            // dd($user->toArray());
-            $user = User::where('id', $current_user->id)->first();
             $user->update([
                 'name'  => $inputs['name'],
-                'image' => $fileName
+                'image' => $file_name
             ]);
-            // $user->id = $current_user->id;
-            // $user->name = $current_user->name;
-            // $user->email = $current_user->email;
-            // $user->password = $current_user->password;
-            // $user->image = (string) $fileName;
-            // dd($user->toArray());
-            // $user->save();
+        } elseif ( $request->has('name') && !$request->has('image')) {
+            $user->update([
+                'name'  => $inputs['name'],
+            ]);
         }
-        
-        
+
         return redirect()->route('user.profile', [
-            'id' => $current_user->id,
-            'current_user_id' => $current_user_id
-            ]);
+            'id'              => $current_user->id,
+            'user'            => $user
+        ]);
     }
-    
+
+
+    /**
+     * 画像をuploadディレクトリに保存する
+     *
+     * @param array $inputs
+     * @return string
+     */
+    private function uploadImageToPublic(Request $request): string
+    {
+        if (!$request->has('image')) return '';
+
+        $file = $request->image;
+
+        // アップロードされたファイル名を取得
+        $file_name = time() . $file->getClientOriginalName();
+
+        $target_path = public_path('/public/uploads-profile');
+
+        $file->move($target_path, $file_name);
+
+        return $file_name;
+    }
 }
 
