@@ -17,16 +17,15 @@ class Review extends Model
 
     // 自動でupdated_atとcreated_atをレコード挿入時に入れてくれる
     public $timestamps = true;
+
     public static $rules = [
-        'name'            => 'required|max: 30',
         'user_id'         => 'required',
         'title'           => 'required|max: 30',
         'content'         => 'required|max: 1000',
         'taste_intensity' => 'required',
         'scent_strength'  => 'required',
         'evaluation'      => 'required',
-        'ponshu_image'    => 'image|file',
-
+        'image'           => 'image|file',
     ];
 
     /* ----- リレーション ----- */
