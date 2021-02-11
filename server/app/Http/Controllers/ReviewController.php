@@ -94,7 +94,6 @@ class ReviewController extends Controller
     //編集機能の追加
     public function edit(int $review_id)
     {
-        //'reviews'をキーとして使えるように設定
         $review = Review::find($review_id);
 
         return view('review.edit', ['review' => $review]); 
@@ -120,6 +119,7 @@ class ReviewController extends Controller
     {
         $review = Review::find($request->review_id);
         $review->delete();
+        
         return redirect()->route('top.index');
     }
 
