@@ -24,11 +24,12 @@ class ReviewRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|max:20', 
+            'title' => 'required|string|max:20',
+            'content' => 'required|string|max:1000', // FIXME: 後でちゃんと実装する
             'taste_intensity' => 'required|int',
             'scent_strength' => 'required|int',
             'evaluation' => 'required|int',
-            'image' => 'file|image|mimes:jpeg,png,jpg',
+            'image' => 'nullable|mimes:jpeg,bmp,png',
         ]; 
     }
 }
