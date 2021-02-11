@@ -10,11 +10,16 @@ use App\Models\Like;
 
 class Review extends Model
 {
-    protected $table = "reviews";
+    /**
+     * モデルと関連しているテーブル
+     *
+     * @var string
+     */
 
+    protected $table = "reviews";
     // idカラムの更新・挿入はさせない
     protected $guarded = ['id'];
-
+    
     // 自動でupdated_atとcreated_atをレコード挿入時に入れてくれる
     public $timestamps = true;
 
