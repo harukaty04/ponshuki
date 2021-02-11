@@ -42,24 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    // public static $rules = [
-    //     'id'          => 'required',
-    //     'name'            => 'required|max: 30',
-    //     'email'         => 'required|max: 30',
-    //     'password'  => 'required',
-    //     'image'      => 'image|file',
-    // ];
-
+    
     public function reviews()
     {
         return $this->hasMany('App\Models\Review');
-        return $this->hasMany(Review::class);
     }
 
     public function likes(): BelongsToMany
     {
-        // return $this->hasMany('App\Models\Like');
         return $this->belongsToMany('App\Models\Like', 'likes')->withTimestamps();
     }
 
