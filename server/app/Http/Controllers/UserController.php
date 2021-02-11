@@ -134,7 +134,7 @@ class UserController extends Controller
         // アップロードされたファイル名を取得
         $file_name = time() . $file->getClientOriginalName();
 
-        $target_path = public_path('/public/uploads-profile');
+        $target_path = public_path('/uploads-profile');
 
         $file->move($target_path, $file_name);
 

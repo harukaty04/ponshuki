@@ -68,13 +68,10 @@ class ReviewController extends Controller
 
         // ログイン中のユーザーを取得
         $current_user = Auth::user();
-        $user = Review::where('id', $current_user->id)->first();
 
-        if ($file = $request->image ) {
+        if ($request->has('image')) {
+
             $file_name = $this->uploadImageToPublic($request);
-            $target_path = public_path('/public/uploads/');
-            $file->move($target_path, $file_name);
-            
         } else {
             $file_name = "";
         }
@@ -91,19 +88,7 @@ class ReviewController extends Controller
 
         Review::create($value);
 
-        return redirect()->route('top.index', [
-            'id'              => $current_user->id,
-            'user'            => $user
-        ]);
-
-
-        /**
-         * 以下エラーコーど
-         * 
-         */
-        // $inputsが空でなければ実行
-        
-
+        return redirect()->route('top.index');
     }
 
     //編集機能の追加
@@ -111,7 +96,6 @@ class ReviewController extends Controller
     {
         //'reviews'をキーとして使えるように設定
         $review = Review::find($review_id);
-        // dd($review->toArray());
 
         return view('review.edit', ['review' => $review]); 
         
@@ -140,59 +124,81 @@ class ReviewController extends Controller
     }
 
     public function store(Request $request)
-        {
+    {
         $request->file('file')->store('');
-        }
-
-        public function getSake()
-        {
-            $url = "https://muro.sakenowa.com/sakenowa-data/api/brands";
-            $method = "GET";
-
-            //接続
-            $client = new Client();
-    
-            $sake_response = $client->request($method, $url);
-            $sake_response = $sake_response->getBody();
-            $sake_response = json_decode($sake_response, true);
-            $brands = $sake_response['brands'];
-            //ひとつずつ配列を処理する
-            //nameだけを取り出す
-            //配列にいれる
-    
-            foreach ($brands as $brand)
-            {
-                $brand_names[] = $brand['name'];
-            }
-    
-            return response()->json($brand_names);
-        }
-
-        public function like(Request $request)
-        {
-            $user_id = Auth::user()->id; //1.ログインユーザーのid取得
-            $review_id = $request->review_id; //2.投稿idの取得
-            $already_liked = Like::where('user_id', $user_id)->where('review_id', $review_id)->first(); 
-
-            if (!$already_liked) { //もしこのユーザーがこの投稿にまだいいねしてなかったら
-                $like = new Like; //4.Likeクラスのインスタンスを作成
-                $like->review_id = $review_id; //Likeインスタンスにreview_id,user_idをセット
-                $like->user_id = $user_id;
-                $like->save();
-            } else { //もしこのユーザーがこの投稿に既にいいねしてたらdelete
-                Like::where('review_id', $review_id)->where('user_id', $user_id)->delete();
-            }
-            //5.この投稿の最新の総いいね数を取得
-            $review_likes_count = count(Like::where('review_id', $review_id)->get()) ?? 0;
-
-            // $review_likes_count = Review::withCount('likes')->findOrFail($review_id)->likes_count;
-            // dd($review_likes_count);
-            $param = [
-                'review_likes_count' => $review_likes_count,
-            ];
-            // dd($param);
-            return response()->json($param); //6.JSONデータをjQueryに返 す
-            
-        }
     }
+
+    public function getSake()
+    {
+        $url = "https://muro.sakenowa.com/sakenowa-data/api/brands";
+        $method = "GET";
+
+        //接続
+        $client = new Client();
+
+        $sake_response = $client->request($method, $url);
+        $sake_response = $sake_response->getBody();
+        $sake_response = json_decode($sake_response, true);
+        $brands = $sake_response['brands'];
+        //ひとつずつ配列を処理する
+        //nameだけを取り出す
+        //配列にいれる
+
+        foreach ($brands as $brand)
+        {
+            $brand_names[] = $brand['name'];
+        }
+
+        return response()->json($brand_names);
+    }
+
+    public function like(Request $request)
+    {
+        $user_id = Auth::user()->id; //1.ログインユーザーのid取得
+        $review_id = $request->review_id; //2.投稿idの取得
+        $already_liked = Like::where('user_id', $user_id)->where('review_id', $review_id)->first(); 
+
+        if (!$already_liked) { //もしこのユーザーがこの投稿にまだいいねしてなかったら
+            $like = new Like; //4.Likeクラスのインスタンスを作成
+            $like->review_id = $review_id; //Likeインスタンスにreview_id,user_idをセット
+            $like->user_id = $user_id;
+            $like->save();
+        } else { //もしこのユーザーがこの投稿に既にいいねしてたらdelete
+            Like::where('review_id', $review_id)->where('user_id', $user_id)->delete();
+        }
+        //5.この投稿の最新の総いいね数を取得
+        $review_likes_count = count(Like::where('review_id', $review_id)->get()) ?? 0;
+
+        // $review_likes_count = Review::withCount('likes')->findOrFail($review_id)->likes_count;
+        // dd($review_likes_count);
+        $param = [
+            'review_likes_count' => $review_likes_count,
+        ];
+        // dd($param);
+        return response()->json($param); //6.JSONデータをjQueryに返 す
+        
+    }
+
+    /**
+     * 画像をuploadディレクトリに保存する
+     *
+     * @param array $inputs
+     * @return string
+     */
+    private function uploadImageToPublic(ReviewRequest $request): string
+    {
+        if (!$request->has('image')) return '';
+
+        $file = $request->image;
+
+        // アップロードされたファイル名を取得
+        $file_name = time() . $file->getClientOriginalName();
+
+        $target_path = public_path('/uploads');
+
+        $file->move($target_path, $file_name);
+
+        return $file_name;
+    }
+}
 
