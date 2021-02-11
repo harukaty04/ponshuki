@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use App\Http\Requests\CreateTask;
+use App\Models\Review;
 use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -14,32 +15,29 @@ class ReviewControllerTest extends TestCase
 {
 
     use RefreshDatabase;
-
-    
-### 投稿一覧表示機能のテスト ###
-// 未ログイン時
+    /**
+     * 投稿一覧表示機能のテスト
+     *
+     * 
+     */
     public function testGuestIndex()
     {
         $response = $this->get(route('top.index'));
-
-        //HTTPステータスコードを持っているか
-        $response->assertStatus(200)
-            ->assertViewIs('top.index')
-            ->assertSee('会員登録')
-            ->assertSee('ログイン')
-            ->assertSee('簡単ログイン');
+        // リダイレクト処理になっていることを確認
+        $response->assertStatus(302);
     }
 
-//ログイン時
+    //ログイン時
     public function testAuthIndex()
     {
-        $user = factory(User::class)->create(
-            // ['email' => 'test@gmail.com']
-            ['name' => 'haruka']
-        );
+
+        // FactoryでUserに紐づくReviewを一括で生成する
+        $user = factory(User::class)->create();
+        $review = factory(Review::class)->create(['user_id' => $user->id]);
+
         
         $response = $this->actingAs($user)
-            ->get(route('top.index'));
+        ->get(route('top.index'));
 
         $response->assertStatus(200)
             ->assertViewIs('top.index')
@@ -48,29 +46,40 @@ class ReviewControllerTest extends TestCase
         
     }
 
-### 投稿画面表示機能のテスト ###
+    /**
+     *　投稿画面表示機能のテスト
+     * 
+     *
+     */
 
-    // 未ログイン時
-    // public function testGuestCreate()
-    // {
-    //     $response = $this->get(route('review.create'));
 
-    //     $response->assertRedirect('login');
-    // }
+    //未ログイン時
+    public function testGuestCreate()
+    {
+        $response = $this->get(route('review.create'));
 
-    // ログイン時
-    // public function testAuthCreate()
-    // {
-    //     $user = factory(User::class)->create();
+        $response->assertRedirect('login');
+    }
 
-    //     $response = $this->actingAs($user)
-    //     ->get(route('review.create'));
+    //ログイン時
+    public function testAuthCreate()
+    {
+        $user = factory(User::class)->create();
 
-    //     $response->assertStatus(200)
-    //     ->assertViewIs('review.create');
-    // }
+        $response = $this->actingAs($user)
+        ->get(route('review.create'));
 
-    ### 投稿機能のテスト ###
+        $response->assertStatus(200)
+        ->assertViewIs('review.create');
+    }
+
+    /**
+     *　投稿機能のテスト
+     * 
+     *
+     * 
+     */
+    
 
     // 未ログイン時
     // public function testGuestStore()
