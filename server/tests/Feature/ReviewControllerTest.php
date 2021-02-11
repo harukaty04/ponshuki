@@ -9,12 +9,13 @@ use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\User;
-
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class ReviewControllerTest extends TestCase
 {
 
     use RefreshDatabase;
+
     /**
      * 投稿一覧表示機能のテスト
      *
@@ -33,7 +34,7 @@ class ReviewControllerTest extends TestCase
 
         // FactoryでUserに紐づくReviewを一括で生成する
         $user = factory(User::class)->create();
-        $review = factory(Review::class)->create(['user_id' => $user->id]);
+        // $review = factory(Review::class)->create(['user_id' => $user->id]);
 
         
         $response = $this->actingAs($user)
@@ -47,123 +48,119 @@ class ReviewControllerTest extends TestCase
     }
 
     /**
-     *　投稿画面表示機能のテスト
-     * 
-     *
-     */
-
-
-    //未ログイン時
-    public function testGuestCreate()
-    {
-        $response = $this->get(route('review.create'));
-
-        $response->assertRedirect('login');
-    }
-
-    //ログイン時
-    public function testAuthCreate()
-    {
-        $user = factory(User::class)->create();
-
-        $response = $this->actingAs($user)
-        ->get(route('review.create'));
-
-        $response->assertStatus(200)
-        ->assertViewIs('review.create');
-    }
-
-    /**
      *　投稿機能のテスト
-     * 
-     *
      * 
      */
     
 
-    // 未ログイン時
-    // public function testGuestStore()
-    // {
-    //     $response = $this->post(route('articles.store'));
-
-    //     $response->assertRedirect('login');
-    // }
-
-    // ログイン時
-    // public function testAuthStore()
-    // {
-    //     // テストデータをDBに保存
-    //     $user = factory(User::class)->create();
-
-    //     $body = "テスト本文";
-    //     $user_id = $user->id;
-
-    //     $response = $this->actingAs($user)
-    //     ->post(route('articles.store',
-    //     [
-    //         'body' => $body,
-    //         'user_id' => $user_id,
-    //         ]
-    //     ));
-
-    //     // テストデータがDBに登録されているかテスト
-    //     $this->assertDatabaseHas('articles', [
-    //         'body' => $body,
-    //         'user_id' => $user_id
-    //     ]);
-
-    //     $response->assertRedirect(route('top.index'));
-    // }
-
-    ### 投稿の編集画面 表示機能のテスト ###
-
-    // 未ログイン時
-    // public function  testGuestEdit()
-    // {
-    //     $article = factory(Article::class)->create();
-
-    //     $response = $this->get(route('articles.edit', ['article' => $article]));
-    //     $response->assertRedirect(route('login'));
-    // }
+    //未ログイン時
+    public function testGuestCreate()
+    {
+        $response = $this->post(route('top.create'));
+        $response->assertRedirect('login');
+    }
 
     // ログイン時
-    // public function testAuthEdit()
-    // {
-    //     $this->withoutExceptionHandling();
-    //     $review = factory(Review::class)->create();
-    //     $user = $review->user;
+    public function testReviewCreate()
+    {
+        // テストユーザー作成
+        $user = factory(User::class)->create();
 
-    //     $response = $this->actingAs($user)->get(route('review.edit', ['review' => $review]));
+        $request_params = [
+            'title'           => 'テスト', 
+            'content'         => "テスト本文",
+            'taste_intensity' => 1,
+            'scent_strength'  => 1,
+            'evaluation'      => 1,
+        ];
 
-    //     $response->assertStatus(200)->assertViewIs('review.edit');
-    // }
 
-    ### 投稿削除機能のテスト ###
-    // public function testDestroy()
-    // {
-    //     $this->withoutExceptionHandling();
+        $response = $this->actingAs($user, 'web')->from(route('top.index'))->post(route('top.create', $request_params));
 
-    //     // テストデータをDBに保存
-    //     $user = factory(User::class)->create();
+        $response->assertStatus(302);
+        // テストデータがDBに登録されているかテスト
+        $this->assertDatabaseHas('reviews', [
+            'title'           => 'テスト', 
+            'content'         => "テスト本文",
+            'taste_intensity' => 1,
+            'scent_strength'  => 1,
+            'evaluation'      => 1,
+            
+        ]);
 
-    //     $content = "テスト本文";
-    //     $user_id = $user->id;
+        $response->assertRedirect(route('top.index'));
+    }
 
-    //     $review = Review::create([
-    //         'content' => $content,
-    //         'user_id' => $user->id,
-    //         ]);
+    /**
+     *　投稿の編集画面 表示機能のテスト
+     * 
+     */
+    
 
+    //未ログイン時
+    public function  testGuestEdit()
+    {
+        // $review = factory(Review::class)->create();
+        // dd ($review);
+        $response = $this->get(route('review.update'));
+        $response->assertRedirect(route('login'));
+    }
+
+    /**
+     *　ログインしている場合に
+     *　編集前のtitle~contentが入力されているか確認
+     */
+
+    public function testAuthEdit()
+    {
+        $this->withoutExceptionHandling();
+        $user = factory(User::class)->create();
+        $review = Review::create([
+            'user_id'         => $user->id,
+            'title'           => 'テスト', 
+            'content'         => "テスト本文",
+            'taste_intensity' => 1,
+            'scent_strength'  => 1,
+            'evaluation'      => 1,
+            
+            ]);
+
+        $response = $this->actingAs($user)->get(route('review.edit', ['review' => $review]));
+
+        $response->assertStatus(200)->assertViewIs('review.edit');
+    }
+
+    /**
+     *　投稿削除機能のテスト
+     * 
+     */
+
+    public function testDestroy()
+    {
+        $this->withoutExceptionHandling();
+
+        // テストデータをDBに保存
+        $user = factory(User::class)->create();
+        
+        $review = Review::create([
+            'user_id'         => $user->id,
+            'title'           => 'テスト', 
+            'content'         => "テスト本文",
+            'taste_intensity' => 1,
+            'scent_strength'  => 1,
+            'evaluation'      => 1,
+            
+            ]);
+    
         // DBからテストデータを削除
-    //     $response = $this->actingAs($user)->delete(route('54view.destroy', ['review' => $review]));
+        $response = $this->actingAs($user)->post(route('review.destroy', ['review_id' => $review->id]));
 
-    //     // テストデータがDBから削除されているかテスト
-    //     $this->assertDatabaseMissing('review', [
-    //         'content' => $content,
-    //         'user_id' => $user_id
-    //     ]);
+        // テストデータがDBから削除されているかテスト
+        $this->assertDatabaseMissing('reviews', [
+            'id'         => $review->id,
+        ]);
 
-    //     $response->assertRedirect(route('top.index'));
-    // }
+        $response->assertRedirect(route('top.index'));
+    }
 
 }
