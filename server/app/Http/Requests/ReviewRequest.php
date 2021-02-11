@@ -28,7 +28,7 @@ class ReviewRequest extends FormRequest
             'taste_intensity' => 'required|int',
             'scent_strength' => 'required|int',
             'evaluation' => 'required|int',
-            'image' => 'file|image|mimes:jpeg,png,jpg,gif',
+            'image' => 'file|image|mimes:jpeg,png,jpg',
         ]; 
     }
 }
