@@ -17,15 +17,15 @@ Auth::routes();
 Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
 
 # ユーザー投稿関係(index, show)
-Route::get('review/{review}', 'ReviewsController@show')->name('review.show')->where('article', '[0-9]+'); 
-Route::get('/','ReviewsController@index')->name('top.index');
+Route::get('review/{review}', 'ReviewController@show')->name('review.show')->where('article', '[0-9]+'); 
+Route::get('/','ReviewController@index')->name('top.index');
 
 //画像投稿でも使用
-Route::resource('review', 'ReviewsController', ['only' => ['create', 'store', 'destroy']]);
-Route::post('/create','ReviewsController@create')->name('top.create');
-Route::get('/review/edit/{review_id}', 'ReviewsController@edit')->name('review.edit');
-Route::post('/review/edit', 'ReviewsController@update')->name('review.update');
-Route::post('/review/destroy','ReviewsController@destroy')->name('review.destroy');
+Route::resource('review', 'ReviewController', ['only' => ['create', 'store', 'destroy']]);
+Route::post('/create','ReviewController@create')->name('top.create');
+Route::get('/review/edit/{review_id}', 'ReviewController@edit')->name('review.edit');
+Route::post('/review/edit', 'ReviewController@update')->name('review.update');
+Route::post('/review/destroy','ReviewController@destroy')->name('review.destroy');
 
 # 編集機能作成
 Route::post('/edit_profile', 'UserController@editProfile')->name('edit.profile');
@@ -44,10 +44,10 @@ Route::prefix('users')->name('users.')->group(function () {
 //sakeAPI
 Route::get(' https://muro.sakenowa.com/sakenowa-data/api/brands');
 Route::get('/search/sake', 'SearchController@getSake');
-Route::get('/search/sake', 'ReviewsController@getSake');
+Route::get('/search/sake', 'ReviewController@getSake');
 
 //いいね
-Route::post('/likes', 'ReviewsController@like')->name('reviews.like');
+Route::post('/likes', 'ReviewController@like')->name('reviews.like');
 Route::get('/{name}/likes', 'UserController@likes')->name('likes');
 
 //プロフィール写真設定

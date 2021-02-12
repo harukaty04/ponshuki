@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 
 use App\Mail\BareMail;
@@ -42,25 +42,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    // public static $rules = [
-    //     'id'          => 'required',
-    //     'name'            => 'required|max: 30',
-    //     'email'         => 'required|max: 30',
-    //     'password'  => 'required',
-    //     'image'      => 'image|file',
-    // ];
-
+    
     public function reviews()
     {
-        return $this->hasMany('App\Reviews');
-        return $this->hasMany(Review::class);
+        return $this->hasMany('App\Models\Review');
     }
 
     public function likes(): BelongsToMany
     {
-        // return $this->hasMany('App\Like');
-        return $this->belongsToMany('App\Like', 'likes')->withTimestamps();
+        return $this->belongsToMany('App\Models\Like', 'likes')->withTimestamps();
     }
 
 

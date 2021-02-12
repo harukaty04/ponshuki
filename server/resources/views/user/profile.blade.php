@@ -16,7 +16,7 @@
                 @if($user->image === null)
                     <i class="fas fa-user-circle fa-6x mr-1 "></i>
                 @else
-                    <img src="/uploads/{{ $user->image }}" width="100px" height="100px">
+                    <img src="/public/uploads-profile/{{ $user->image }}" width="100px" height="100px">
                 @endif     
                 {{-- <div href="{{ route('user.edit_profile') }}" class="text-dark wf-mplus1p d-flex align-items-end"> --}}
                     <span class="user_name h2 ">{{ $current_user_name }}</span>
@@ -49,7 +49,7 @@
                         @if($review->image == null)
                         <img src="/uploads/noimage.jpg" width="100px" height="100px">
                         @else
-                        <img src="/uploads/{{ $review->image }}" width="100px" height="100px">
+                        <img src="/public/uploads-profile/{{ $review->image }}" width="100px" height="100px">
                         @endif  
                         
                         <span class="all-rating">

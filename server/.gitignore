@@ -9,6 +9,7 @@
 /public/uploads-profile
 /vendor
 .env
+.env.testing
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
