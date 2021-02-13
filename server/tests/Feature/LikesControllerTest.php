@@ -12,11 +12,15 @@ class LikesControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testIsLikedByNull()
+    /**
+     * 新規レビュー作成時はいいねが０の状態であることをテスト
+     * @test
+     */
+    public function Likes_新規レビュー作成時はいいねが０の状態であることをテスト()
     {
         //userからidを取得し$reviewに入れる
         $user = factory(User::class)->create();
-        
+
         $review = Review::create([
             'user_id'         => $user->id,
             'title'           => 'テスト', 
@@ -26,9 +30,9 @@ class LikesControllerTest extends TestCase
             'evaluation'      => 1,
             
             ]);
-            
-        $result = $review->isLikedBy(null);
-      
+    
+        $result = $review->isLikedBy($user);
+    
         $this->assertFalse($result);
     }
 
