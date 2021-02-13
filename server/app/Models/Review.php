@@ -22,11 +22,11 @@ class Review extends Model
     
     // 自動でupdated_atとcreated_atをレコード挿入時に入れてくれる
     public $timestamps = true;
-
+    
     public static $rules = [
         'user_id'         => 'required',
         'title'           => 'required|max: 30',
-        'content'         => 'required|max: 1000',
+        'content'         => 'required|max: 300',
         'taste_intensity' => 'required',
         'scent_strength'  => 'required',
         'evaluation'      => 'required',
