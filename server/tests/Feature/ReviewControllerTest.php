@@ -21,6 +21,7 @@ class ReviewControllerTest extends TestCase
      *
      * 
      */
+    //未ログイン時
     public function testGuestIndex()
     {
         $response = $this->get(route('top.index'));
