@@ -170,7 +170,7 @@ class ReviewController extends Controller
         $review_likes_count = count(Like::where('review_id', $review_id)->get()) ?? 0;
 
         // $review_likes_count = Review::withCount('likes')->findOrFail($review_id)->likes_count;
-        // dd($review_likes_count);
+        
         $param = [
             'review_likes_count' => $review_likes_count,
         ];
