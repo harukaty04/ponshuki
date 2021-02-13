@@ -12,7 +12,6 @@ class SearchController extends Controller
 {
     public function index(Request $request)
     {
-        // dd($request->keyword);
         #キーワード受け取り
         $keyword = $request->input('keyword');
 
@@ -67,22 +66,6 @@ class SearchController extends Controller
 }
 
 
-//     public function autocomplete(Request $request)
-// {
-//     $input = $request->all();
-//     $term = $input['sake-data'];
-//     $result = array();
-//     $sake_lists = 
-//                 ->take(10)->get();
-//     foreach( $sake_lists as $sake )
-//     {
-//         $result[] = ['id'=> $sake->id,'value'=>$sake->firstname.' '.$sake->lastname];
-//     }
-
-//     return response()->json($result);
-
-// }
-// }
 
 
 
