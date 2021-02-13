@@ -10,7 +10,11 @@ use App\Models\Review;
 
 class LikesController extends Controller
 {
-    
+    /**
+     * いいねのハートマークを表示
+     *
+     * @return void
+     */
     public function index()
     { 
         
