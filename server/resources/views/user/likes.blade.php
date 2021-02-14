@@ -11,10 +11,7 @@
     <div class="col-sm-3 ml-auto mr-auto">
         @include('shared.side-bar')
     </div>
-
     <div class="col-sm-9 ">
-
-        
         {{-- いいねした記事の表示 --}}
         @foreach($reviews as $review)
         <div class="card mt-5 mb-3 ">
