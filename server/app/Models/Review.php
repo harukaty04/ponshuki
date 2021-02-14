@@ -12,21 +12,18 @@ class Review extends Model
 {
     /**
      * モデルと関連しているテーブル
-     *
-     * @var string
      */
-
     protected $table = "reviews";
     // idカラムの更新・挿入はさせない
     protected $guarded = ['id'];
     
     // 自動でupdated_atとcreated_atをレコード挿入時に入れてくれる
     public $timestamps = true;
-
+    
     public static $rules = [
         'user_id'         => 'required',
         'title'           => 'required|max: 30',
-        'content'         => 'required|max: 1000',
+        'content'         => 'required|max: 300',
         'taste_intensity' => 'required',
         'scent_strength'  => 'required',
         'evaluation'      => 'required',
@@ -43,9 +40,11 @@ class Review extends Model
     {
         return $this->hasMany(Like::class);
     }
+    
 
     //後でViewで使う、いいねされているかを判定するメソッド。
-    public function isLikedBy($user): bool 
+    //FIXME: $user_idだけを渡すように変更する
+    public function isLikedBy(User $user): bool 
     {
         return Like::where('user_id', $user->id)->where('review_id', $this->id)->first() !==null;
     }

@@ -70,7 +70,6 @@ class ReviewController extends Controller
         $current_user = Auth::user();
 
         if ($request->has('image')) {
-
             $file_name = $this->uploadImageToPublic($request);
         } else {
             $file_name = "";
@@ -103,13 +102,13 @@ class ReviewController extends Controller
 
     public function update(Request $request)
     {
-        $reviews = Review::find($request->id);
-        $reviews->title = $request->title;
-        $reviews->image = $request->image;
+        $reviews                  = Review::find($request->id);
+        $reviews->title           = $request->title;
+        $reviews->image           = $request->image;
         $reviews->taste_intensity = $request->taste_intensity;
-        $reviews->scent_strength = $request->scent_strength;
-        $reviews->evaluation = $request->evaluation;
-        $reviews->content = $request->content;
+        $reviews->scent_strength  = $request->scent_strength;
+        $reviews->evaluation      = $request->evaluation;
+        $reviews->content         = $request->content;
         $reviews->update();
         
         return redirect()->route('top.index');
@@ -139,44 +138,13 @@ class ReviewController extends Controller
         $sake_response = $client->request($method, $url);
         $sake_response = $sake_response->getBody();
         $sake_response = json_decode($sake_response, true);
-        $brands = $sake_response['brands'];
-        //ひとつずつ配列を処理する
-        //nameだけを取り出す
-        //配列にいれる
+        $brands        = $sake_response['brands'];
 
         foreach ($brands as $brand)
         {
             $brand_names[] = $brand['name'];
         }
-
         return response()->json($brand_names);
-    }
-
-    public function like(Request $request)
-    {
-        $user_id = Auth::user()->id; //1.ログインユーザーのid取得
-        $review_id = $request->review_id; //2.投稿idの取得
-        $already_liked = Like::where('user_id', $user_id)->where('review_id', $review_id)->first(); 
-
-        if (!$already_liked) { //もしこのユーザーがこの投稿にまだいいねしてなかったら
-            $like = new Like; //4.Likeクラスのインスタンスを作成
-            $like->review_id = $review_id; //Likeインスタンスにreview_id,user_idをセット
-            $like->user_id = $user_id;
-            $like->save();
-        } else { //もしこのユーザーがこの投稿に既にいいねしてたらdelete
-            Like::where('review_id', $review_id)->where('user_id', $user_id)->delete();
-        }
-        //5.この投稿の最新の総いいね数を取得
-        $review_likes_count = count(Like::where('review_id', $review_id)->get()) ?? 0;
-
-        // $review_likes_count = Review::withCount('likes')->findOrFail($review_id)->likes_count;
-        // dd($review_likes_count);
-        $param = [
-            'review_likes_count' => $review_likes_count,
-        ];
-        // dd($param);
-        return response()->json($param); //6.JSONデータをjQueryに返 す
-        
     }
 
     /**

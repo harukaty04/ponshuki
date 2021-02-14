@@ -47,10 +47,11 @@ Route::get('/search/sake', 'SearchController@getSake');
 Route::get('/search/sake', 'ReviewController@getSake');
 
 //いいね
-Route::post('/likes', 'ReviewController@like')->name('reviews.like');
+// Route::post('/likes', 'ReviewController@like')->name('review.like');
+Route::post('/likes', 'LikesController@create')->name('likes.create');
 Route::get('/{name}/likes', 'UserController@likes')->name('likes');
 
-//プロフィール写真設定
+
 
 
 

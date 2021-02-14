@@ -12,7 +12,6 @@ class SearchController extends Controller
 {
     public function index(Request $request)
     {
-        // dd($request->keyword);
         #キーワード受け取り
         $keyword = $request->input('keyword');
 
@@ -37,7 +36,7 @@ class SearchController extends Controller
         
         //おすすめ順（総合評価順）に並ぶようにする
         return view('user.searchpage', compact('reviews', 'keyword','current_user_name', 'current_user_id','message'));
-    //     return view('user.searchpage')->with('reviews', $reviews);
+    
     }
 
 
@@ -67,22 +66,6 @@ class SearchController extends Controller
 }
 
 
-//     public function autocomplete(Request $request)
-// {
-//     $input = $request->all();
-//     $term = $input['sake-data'];
-//     $result = array();
-//     $sake_lists = 
-//                 ->take(10)->get();
-//     foreach( $sake_lists as $sake )
-//     {
-//         $result[] = ['id'=> $sake->id,'value'=>$sake->firstname.' '.$sake->lastname];
-//     }
-
-//     return response()->json($result);
-
-// }
-// }
 
 
 

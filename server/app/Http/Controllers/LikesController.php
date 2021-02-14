@@ -10,20 +10,21 @@ use App\Models\Review;
 
 class LikesController extends Controller
 {
-    
+    /**
+     * いいねのハートマークを表示
+     */
     public function index()
     { 
-        
         $current_user_id = Auth::id();
         // whereInの第二引数は配列のため、pluckで特定のカラムのみの配列に変換する
         $user_likes = Like::where('user_id',$current_user_id)
             ->get()
             ->pluck('review_id');
 
-        $reviews_user_likes = Review::whereIn('id', $user_likes)->get();
-
+        $user_likes_review = Review::whereIn('id', $user_likes)->get();
+        
         return view('user.likes',[
-            'reviews' => $reviews_user_likes,
+            'reviews' => $user_likes_review,
             'current_user_id' => $current_user_id,
 
             ]);
@@ -47,5 +48,32 @@ class LikesController extends Controller
             return  $request->input('like_review');
     } 
 
-    
+    /**
+     * いいね判定機能
+     *
+     * @param Request $request
+     */
+    public function create(Request $request)
+    {
+        $user_id = Auth::user()->id; 
+        $review_id = $request->review_id; 
+        $already_liked = Like::where('user_id', $user_id)->where('review_id', $review_id)->first(); 
+        
+        //未いいねの場合インスタンスを生成、既いいねの場合テーブルから削除
+        if (!$already_liked) { 
+            $like = new Like; 
+            $like->review_id = $review_id; 
+            $like->user_id = $user_id;
+            $like->save();
+        } else {
+            Like::where('review_id', $review_id)->where('user_id', $user_id)->delete();
+        }
+        
+        //この投稿の最新の総いいね数を取得
+        $review_likes_count = Like::where('review_id', $review_id)->count() ?? 0;
+        $param = [
+            'review_likes_count' => $review_likes_count,
+        ];
+        return response()->json($param); 
+    }
 }

@@ -11,10 +11,7 @@
     <div class="col-sm-3 ml-auto mr-auto">
         @include('shared.side-bar')
     </div>
-
     <div class="col-sm-9 ">
-
-        
         {{-- いいねした記事の表示 --}}
         @foreach($reviews as $review)
         <div class="card mt-5 mb-3 ">
@@ -82,6 +79,7 @@
                     <p class="mt-3 ml-5 pl-5">{{ $review->content }}</p>
                     <span class="badge badge-pill badge-light ">#爽酒</span>
 
+                    
         {{-- いいね機能の追加 --}}
                 
                     <!-- Review.phpに作ったisLikedByメソッドをここで使用 -->
@@ -90,13 +88,15 @@
                         <span class="likes">
                             <i  class="like-heart fas fa-heart like-toggle" data-review-id="{{ $review->id }}"></i>
                         <span class="like-counter">{{$review->likes_count}}</span>
-                        </span><!-- /.likes -->
-                        {{-- ログインユーザーがいいねをしていた場合赤いハートを表示 --}}
+                        </span>
+                    <!-- /.likes -->
+                    {{-- ログインユーザーがいいねをしていた場合赤いハートを表示 --}}
                     @else
                         <span class="likes">
                             <i  class="like-heart fas fa-heart heart like-toggle liked" data-review-id="{{ $review->id }}"></i>
                         <span class="like-counter">{{$review->likes_count}}</span>
-                        </span><!-- /.likes -->
+                        </span>
+                    <!-- /.likes -->
                     @endif
             </div>
         </div>
@@ -108,3 +108,4 @@
 </div>
 
 @endsection
+
