@@ -19,7 +19,7 @@
             ・メールアドレス<br>
             </p>
             @endif
-            <form action="{{ route('edit.profile') }}" method="post"  enctype="multipart/form-data">
+            <form action="{{ route('user.update') }}" method="post"  enctype="multipart/form-data">
                 @csrf
                 <div class="pb-2 h5 d-inline-block">名前 : </div>
                 

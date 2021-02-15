@@ -9,7 +9,7 @@
         @include('shared.side-bar')
     </div>
     <div class="col-sm-9">
-        <form method="GET" action="{{ route('user.searchpage') }}">
+        <form method="GET" action="{{ route('user.search') }}">
             @csrf
             <div  class="input-group mt-5">
                 <input type="text" name="keyword" class="form-control" value="{{$keyword}}" 

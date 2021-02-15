@@ -31,8 +31,9 @@ class UserController extends Controller
      * TODO: プロフィール表示はこっちのメソッドを使うこと
      * 
      */
-    public function show(int $id)
+    public function show()
     {
+        $id = Auth::id();
         if ($id !== $this->current_user->id) $this->current_user = User::find($id)->get();
 
          //idが、リクエストされた$userのidと一致するuserを取得
@@ -44,6 +45,7 @@ class UserController extends Controller
             'current_user_name' => $this->current_user->name,
             'reviews'           => $reviews,
             'user'              => $this->current_user,
+            'id'                => $this->current_user->id,
         ]);
     }
 
@@ -66,31 +68,13 @@ class UserController extends Controller
         ]); 
     }
 
-
-    /**
-     * ユーザーがお気に入り登録したReviewsを表示する
-     *
-     * @param string $name
-     */
-    public function likes(string $name)
-    {
-        $user = User::where('name', $name)->first();
-        $reviews = $user->likes->sortByDesc('created_at');
-
-        return view('user.likes', [
-            'user'    => $user,
-            'reviews' => $reviews,
-        ]);
-    }
-
-
     /**
      * プロフィール編集
      * NOTE: プロフィール画像・nameを編集する
      *
      * @param Request $request
      */
-    public function editProfile(Request $request)
+    public function updateProfile(Request $request)
     {
         $inputs = $request->all();
 

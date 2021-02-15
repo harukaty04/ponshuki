@@ -24,7 +24,7 @@ class ReviewControllerTest extends TestCase
     //未ログイン時
     public function testGuestIndex()
     {
-        $response = $this->get(route('top.index'));
+        $response = $this->get(route('review.index'));
         // リダイレクト処理になっていることを確認
         $response->assertStatus(302);
     }
@@ -39,10 +39,10 @@ class ReviewControllerTest extends TestCase
 
         
         $response = $this->actingAs($user)
-        ->get(route('top.index'));
+        ->get(route('review.index'));
 
         $response->assertStatus(200)
-            ->assertViewIs('top.index')
+            ->assertViewIs('review.index')
             ->assertSee('投稿する')
             ->assertSee($user->name . ' さん');
         
@@ -57,7 +57,7 @@ class ReviewControllerTest extends TestCase
     //未ログイン時
     public function testGuestCreate()
     {
-        $response = $this->post(route('top.create'));
+        $response = $this->post(route('review.create'));
         $response->assertRedirect('login');
     }
 
@@ -76,7 +76,7 @@ class ReviewControllerTest extends TestCase
         ];
 
 
-        $response = $this->actingAs($user, 'web')->from(route('top.index'))->post(route('top.create', $request_params));
+        $response = $this->actingAs($user, 'web')->from(route('review.index'))->post(route('review.create', $request_params));
 
         $response->assertStatus(302);
         // テストデータがDBに登録されているかテスト
@@ -89,7 +89,7 @@ class ReviewControllerTest extends TestCase
             
         ]);
 
-        $response->assertRedirect(route('top.index'));
+        $response->assertRedirect(route('review.index'));
     }
 
     /**
@@ -161,7 +161,7 @@ class ReviewControllerTest extends TestCase
             'id'         => $review->id,
         ]);
 
-        $response->assertRedirect(route('top.index'));
+        $response->assertRedirect(route('review.index'));
     }
 
 }

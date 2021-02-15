@@ -14,7 +14,7 @@
         </div>
 
         <div class="p-3 sidebar-hover">
-            <a class="side-bar-link font-allegra" href="{{ route( 'user.profile',['id' => Auth::user()->id] ) }} " >
+            <a class="side-bar-link font-allegra" href="{{ route( 'user.profile') }} " >
                 <i class="fas fa-user-alt fa-lg pr-3"></i> Profile
             </a>
         </div>

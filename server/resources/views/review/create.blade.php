@@ -2,7 +2,7 @@
     <div class="card mt-3">
         <div class="card-body">
             <div class="card-text">
-                <form action="{{ route('top.create') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('review.create') }}" method="post" enctype="multipart/form-data">
                     @include('review.form')
                     <button type="submit" class="update btn blue-gradient float-right wf-mplus1p">投稿する</button>
                 </form>

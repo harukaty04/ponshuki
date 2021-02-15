@@ -11,6 +11,7 @@ src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
         <input type="hidden" name="id" value={{ $review->id ?? '' }}  >
 
         <input type="text" name="title" class="form-control" autocomplete="on"  list="sake-data" required value="{{ $review->title ?? old('title') }}" >
+        {{ $errors->first('title') }}
         <datalist id="sake-data"></datalist>
     </div>
     <script src="{{ mix('/js/autocomplete.js') }}"></script>
@@ -18,6 +19,7 @@ src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
     <div class="nihonshu-image pl-5">
             <label class="nihonshu-image">画像</label>
             <input type="file" id="image" name="image" accept="image/jpeg, image/png"  class="pt-3 pl-5" value="{{ $review->image ?? old('image') }}">
+            {{ $errors->first('image') }}
             <iframe name="form_response" style="display:none;" ></iframe>
     </div>
     {{-- @if(empty($review))
@@ -114,6 +116,6 @@ src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
     </div>
 
     <div class="form-group pt-4">
-        
-        <textarea name="content" required class="form-control wf-mplus1p" rows="4" placeholder="詳細">{{ $review->content ?? old('body') }}</textarea>
+        <textarea name="content" required class="form-control wf-mplus1p" rows="4" placeholder="詳細">{{ $review->content ?? old('content') }}</textarea>
+        {{ $errors->first('content') }}
     </div>

@@ -34,47 +34,45 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //withCountのメモ
-        //withCountの中にモデルで定義したリレーション名（'likes')をいれることで、
-        //$review->likes_countが使用できるようになる
-        //likes_countはreview_idに紐づくlikesテーブルのレコードがいくつあるのかを返す
-        $reviews = Review::withCount('likes')->orderBy('created_at', 'desc') // 投稿作成日が新しい順に並べる
+        
+        $reviews = Review::withCount('likes')->orderBy('created_at', 'desc') 
             ->get();
 
         $current_user_id = Auth::id();
 
-        // foreach ($reviews as $review) {
-        //     // 取得したReviewsのうち、1件に対して->userとすることで
-        //     // belong_toでつながっているuserモデルにアクセスすることができる
-        // }
         if ( Auth::check() ) {
             $current_user_name = Auth::user()->name;
         } else {
             $current_user_name = '';  
         }
-        return view('top.index', compact('reviews', 'current_user_name', 'current_user_id'));
+        return view('review.index', compact(
+            'reviews', 'current_user_name', 'current_user_id'
+        ));
         
     }
 
     /**
+     * レビュー作成機能
      * MEMO:データベースにレビュー内容が保存されるようなメソッドを実装する,
-     * 画像もpublicに保存できるようにする
+     * 
      * 画像保存拡張子はコントローラーで指定
     */
     
     public function create(ReviewRequest $request)
     {
         $inputs = $request->all();
-
+        
         // ログイン中のユーザーを取得
         $current_user = Auth::user();
-
+        
         if ($request->has('image')) {
             $file_name = $this->uploadImageToPublic($request);
         } else {
             $file_name = "";
         }
 
+        
+        //refactor:privateメソッド化する
         $value = [
             'user_id'         => $current_user->id,
             'title'           => (string) $inputs['title'] ?? '',
@@ -86,11 +84,16 @@ class ReviewController extends Controller
         ];
 
         Review::create($value);
-
-        return redirect()->route('top.index');
+        return redirect()->route('review.index');
     }
 
-    //編集機能の追加
+    /**
+     * レビュー編集表示機能
+
+     *
+     * @param integer $review_id
+     * @return void
+     */
     public function edit(int $review_id)
     {
         $review = Review::find($review_id);
@@ -99,42 +102,46 @@ class ReviewController extends Controller
         
     }
 
-
+    /**
+     * レビュー編集機能
+     *
+     * @param Request $request
+     * @return void
+     */
     public function update(Request $request)
     {
         $reviews                  = Review::find($request->id);
-        $reviews->title           = $request->title;
-        $reviews->image           = $request->image;
-        $reviews->taste_intensity = $request->taste_intensity;
-        $reviews->scent_strength  = $request->scent_strength;
-        $reviews->evaluation      = $request->evaluation;
-        $reviews->content         = $request->content;
-        $reviews->update();
+        $reviews->fill($request->all())->save();
         
-        return redirect()->route('top.index');
+        return redirect()->route('review.index');
     }
 
+    /**
+     * レビュー削除機能
+     *
+     * @param Request $request
+     * @return void
+     */
     public function destroy(Request $request)
     {
         $review = Review::find($request->review_id);
         $review->delete();
         
-        return redirect()->route('top.index');
+        return redirect()->route('review.index');
     }
 
-    public function store(Request $request)
-    {
-        $request->file('file')->store('');
-    }
 
+
+    /**
+     * Constructor
+     */
     public function getSake()
     {
         $url = "https://muro.sakenowa.com/sakenowa-data/api/brands";
         $method = "GET";
 
-        //接続
+        //リファクタ、privateメソッドにする
         $client = new Client();
-
         $sake_response = $client->request($method, $url);
         $sake_response = $sake_response->getBody();
         $sake_response = json_decode($sake_response, true);

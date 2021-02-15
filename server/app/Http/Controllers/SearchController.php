@@ -10,6 +10,12 @@ use App\Models\User;
 
 class SearchController extends Controller
 {
+    /**
+     * 検索機能の一覧表示
+     *
+     * @param Request $request
+     * @return void
+     */
     public function index(Request $request)
     {
         #キーワード受け取り
@@ -35,27 +41,28 @@ class SearchController extends Controller
         }
         
         //おすすめ順（総合評価順）に並ぶようにする
-        return view('user.searchpage', compact('reviews', 'keyword','current_user_name', 'current_user_id','message'));
+        return view('user.search', compact(
+            'reviews', 'keyword','current_user_name', 'current_user_id','message'
+        ));
     
     }
 
-
+    /**
+     * APIを使用して日本酒名を取得、json形式に変換
+     */
     public function getSake()
     {
         $url = "https://muro.sakenowa.com/sakenowa-data/api/brands";
         $method = "GET";
-        //接続
+        
+        //リファクタ
         $client = new Client();
-
         $sake_response = $client->request($method, $url);
-
         $sake_response = $sake_response->getBody();
         $sake_response = json_decode($sake_response, true);
-        $brands = $sake_response['brands'];
-        //ひとつずつ配列を処理する
-        //nameだけを取り出す
-        //配列にいれる
 
+        $brands = $sake_response['brands'];
+        
         foreach ($brands as $brand)
         {
             $brand_names[] = $brand['name'];
