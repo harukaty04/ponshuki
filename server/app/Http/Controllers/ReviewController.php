@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Review;
 use App\Models\Like;
 use GuzzleHttp\Client;
-
+use Illuminate\Http\JsonResponse;
 
 class ReviewController extends Controller
 {
-    
+    const SAKE_API_URL = 'https://muro.sakenowa.com/sakenowa-data/api/brands';
     private $current_user;
 
     /**
@@ -54,7 +54,6 @@ class ReviewController extends Controller
     /**
      * レビュー作成機能
      * MEMO:データベースにレビュー内容が保存されるようなメソッドを実装する,
-     * 
      * 画像保存拡張子はコントローラーで指定
     */
     
@@ -71,17 +70,7 @@ class ReviewController extends Controller
             $file_name = "";
         }
 
-        
-        //refactor:privateメソッド化する
-        $value = [
-            'user_id'         => $current_user->id,
-            'title'           => (string) $inputs['title'] ?? '',
-            'content'         => (string) $inputs['content'] ?? '',
-            'taste_intensity' => (int) $inputs['taste_intensity'],
-            'scent_strength'  => (int) $inputs['scent_strength'],
-            'evaluation'      => (int) $inputs['evaluation'],
-            'image'           => (string) $file_name,
-        ];
+        $value = $this->makeReturnValue($current_user->id, $inputs, $file_name);
 
         Review::create($value);
         return redirect()->route('review.index');
@@ -89,7 +78,6 @@ class ReviewController extends Controller
 
     /**
      * レビュー編集表示機能
-
      *
      * @param integer $review_id
      * @return void
@@ -130,19 +118,16 @@ class ReviewController extends Controller
         return redirect()->route('review.index');
     }
 
-
-
     /**
-     * Constructor
+     * さけのまAPIを使用
+     *
+     * @return JsonResponse
      */
-    public function getSake()
+    public function getSake(): JsonResponse
     {
-        $url = "https://muro.sakenowa.com/sakenowa-data/api/brands";
-        $method = "GET";
-
         //リファクタ、privateメソッドにする
         $client = new Client();
-        $sake_response = $client->request($method, $url);
+        $sake_response = $client->request($method="GET", self::SAKE_API_URL);
         $sake_response = $sake_response->getBody();
         $sake_response = json_decode($sake_response, true);
         $brands        = $sake_response['brands'];
@@ -174,6 +159,27 @@ class ReviewController extends Controller
         $file->move($target_path, $file_name);
 
         return $file_name;
+    }
+
+    /**
+     * リターン用の配列を作成する
+     *
+     * @param integer $user_id
+     * @param array $inputs
+     * @param string $file_name
+     * @return array
+     */
+    private function makeReturnValue(int $user_id, array $inputs, string $file_name): array
+    {
+        return [
+            'user_id'         => $user_id,
+            'title'           => (string) $inputs['title'] ?? '',
+            'content'         => (string) $inputs['content'] ?? '',
+            'taste_intensity' => (int) $inputs['taste_intensity'],
+            'scent_strength'  => (int) $inputs['scent_strength'],
+            'evaluation'      => (int) $inputs['evaluation'],
+            'image'           => (string) $file_name,
+        ];
     }
 }
 
