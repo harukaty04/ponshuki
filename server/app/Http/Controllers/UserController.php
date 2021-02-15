@@ -52,7 +52,6 @@ class UserController extends Controller
 
     /**
      * ユーザーのプロフィール編集ページを表示
-     * TODO: $idを受け取ってそのidのユーザープロフィールにすること
      * 
      * @param Request $request
      */
