@@ -25,8 +25,7 @@ class ReviewController extends Controller
             $this->current_user = Auth::user();
             return $next($request);
         });
-
-        $this->middleware('auth');
+        
     }
     /**
      * Review一括取得する処理を実装する
@@ -125,7 +124,6 @@ class ReviewController extends Controller
      */
     public function getSake(): JsonResponse
     {
-        //リファクタ、privateメソッドにする
         $client = new Client();
         $sake_response = $client->request($method="GET", self::SAKE_API_URL);
         $sake_response = $sake_response->getBody();
@@ -181,5 +179,6 @@ class ReviewController extends Controller
             'image'           => (string) $file_name,
         ];
     }
+
 }
 
