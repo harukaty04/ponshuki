@@ -21,20 +21,6 @@
                 {{-- <div href="{{ route('user.edit_profile') }}" class="text-dark wf-mplus1p d-flex align-items-end"> --}}
                     <span class="user_name h2 ">{{ $current_user_name }}</span>
                 {{-- </div> --}}
-
-                
-                {{-- <div class="font-weight-bold">
-                    <a href="" class="text-muted">
-                        10 フォロー
-                    </a>
-                    <a href="" class="text-muted">
-                        10 フォロワー
-                    </a>
-                </div>
-                <div class="font-weight-lighter">
-                好きなお酒
-                タグ
-                </div> --}}
                 
             </div> 
         </div>
