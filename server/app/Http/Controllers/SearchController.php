@@ -55,7 +55,6 @@ class SearchController extends Controller
         $url = "https://muro.sakenowa.com/sakenowa-data/api/brands";
         $method = "GET";
         
-        //リファクタ
         $client = new Client();
         $sake_response = $client->request($method, $url);
         $sake_response = $sake_response->getBody();
