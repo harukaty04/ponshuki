@@ -1,5 +1,5 @@
 
-<nav class="my-navbar blue-gradient p-side-origin">
+<nav class="my-navbar blue-gradient">
     <a class="my-navbar-brand  pl-4 page-title" href="{{ route( 'review.index' ) }} ">
         <i class="fas fa-wine-glass-alt "></i>
         ponshuki

@@ -43,6 +43,35 @@
                         </span>
                         <p class="mt-3 ml-5 pl-5"> {{ $review->content }} </p>
                         <span class="badge badge-pill badge-light ">#爽酒</span> 
+
+                        
+                        @auth
+                        <!-- Review.phpに作ったisLikedByメソッドをここで使用 -->
+                            @if (!$review->isLikedBy(Auth::user()))
+                                <span class="likes">
+                                    <i  class="like-heart fas fa-heart like-toggle" data-review-id="{{ $review->id }}"></i>
+                                <span class="like-counter">{{$review->likes_count}}</span>
+                                </span><!-- /.likes -->
+                            @else
+                                <span class="likes">
+                                    <i  class="like-heart fas fa-heart heart like-toggle liked" data-review-id="{{ $review->id }}"></i>
+                                <span class="like-counter">{{$review->likes_count}}</span>
+                                </span><!-- /.likes -->
+                            @endif
+                        @endauth
+
+                        @guest
+                                <span class="likes">
+                                    <i class="like-heart fas fa-heart heart"></i>
+                                    <span class="like-counter">{{$review->likes_count}}</span>
+                                </span><!-- /.likes -->
+                        @endguest
+                        
+                        <script type="text/javascript"
+                        src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+                        <script type="text/javascript"
+                        src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+                        <script src="{{ mix('/js/like.js') }}"></script>
                     </div>  
                 </div>
             </div>

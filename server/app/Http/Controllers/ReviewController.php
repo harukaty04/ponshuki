@@ -12,7 +12,7 @@ use Illuminate\Http\JsonResponse;
 
 class ReviewController extends Controller
 {
-    const SAKE_API_URL = 'https://muro.sakenowa.com/sakenowa-data/api/brands';
+    const SAKE_API_URL = "https://muro.sakenowa.com/sakenowa-data/api/brands";
     private $current_user;
 
     /**

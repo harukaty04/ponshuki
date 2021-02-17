@@ -12,7 +12,7 @@ use App\Models\Review;
 class LikesController extends Controller
 {
     /**
-     * いいねのハートマークを表示
+     * いいねした投稿の一覧表示
      */
     public function index()
     { 
@@ -86,7 +86,6 @@ class LikesController extends Controller
             $like->review_id = $review_id; 
             $like->user_id = $user_id;
             $like->save();
-            //
         } else {
             Like::where('review_id', $review_id)
                 ->where('user_id', $user_id)
@@ -98,6 +97,7 @@ class LikesController extends Controller
         $param = [
             'review_likes_count' => $review_likes_count,
         ];
+        
         return response()->json($param); 
     }
 }

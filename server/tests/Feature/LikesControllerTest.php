@@ -63,9 +63,6 @@ class LikesControllerTest extends TestCase
         );
         $decode_response = json_decode($response->content());
 
-        // $result = $review->isLikedBy($user);
-        // $like = Like::get()->toArray();
-
         $this->assertEquals($expected_num, $decode_response->review_likes_count);
     }
 

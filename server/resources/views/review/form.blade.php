@@ -22,10 +22,7 @@ src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
             {{ $errors->first('image') }}
             <iframe name="form_response" style="display:none;" ></iframe>
     </div>
-    {{-- @if(empty($review))
-        <img src={{$review->image}}>
-    @endif
-    ---}}
+    
     <div class="taste-ev ">
         <label class="taste-evl pl-5 wf-mplus1p">味の濃さ</label>
         <div class="ratebutton ml-5 pl-5">
