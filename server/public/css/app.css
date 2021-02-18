@@ -10993,6 +10993,10 @@ a.text-dark:focus {
   padding-top: 50%;
 }
 
+.loginbtn {
+  padding-right: 10%;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
