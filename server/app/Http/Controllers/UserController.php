@@ -43,6 +43,7 @@ class UserController extends Controller
 
         return view('user.profile', [
             'current_user_name' => $this->current_user->name,
+            'current_user_id'   => $this->current_user->id,
             'reviews'           => $reviews,
             'user'              => $this->current_user,
             'id'                => $this->current_user->id,
