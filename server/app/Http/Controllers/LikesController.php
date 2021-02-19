@@ -22,8 +22,10 @@ class LikesController extends Controller
             ->get()
             ->pluck('review_id');
 
-        $user_likes_review = Review::whereIn('id', $user_likes)->get();
-        
+        $user_likes_review = Review::whereIn('id', $user_likes)
+            ->withCount('likes')
+            ->get();
+
         return view('user.likes',[
             'reviews' => $user_likes_review,
             'current_user_id' => $current_user_id,
