@@ -84,12 +84,12 @@
                 @if (!$review->isLikedBy(Auth::user()))
                     <span class="likes">
                         <i  class="like-heart fas fa-heart like-toggle" data-review-id="{{ $review->id }}"></i>
-                    <span class="like-counter">{{$review->likes_count}}</span>
+                    <span class="like-counter">{{ $review->likes_count }}</span>
                     </span><!-- /.likes -->
                 @else
                     <span class="likes">
                         <i  class="like-heart fas fa-heart heart like-toggle liked" data-review-id="{{ $review->id }}"></i>
-                    <span class="like-counter">{{$review->likes_count}}</span>
+                    <span class="like-counter">{{ $review->likes_count }}</span>
                     </span><!-- /.likes -->
                 @endif
             @endauth
@@ -97,7 +97,7 @@
             @guest
                 <span class="likes">
                     <i class="like-heart fas fa-heart heart"></i>
-                    <span class="like-counter">{{$review->likes_count}}</span>
+                    <span class="like-counter">{{ $review->likes_count }}</span>
                 </span><!-- /.likes -->
             @endguest
         </div>

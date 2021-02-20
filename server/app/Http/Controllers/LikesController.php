@@ -12,7 +12,7 @@ use App\Models\Review;
 class LikesController extends Controller
 {
     /**
-     * いいねのハートマークを表示
+     * いいねした投稿の一覧表示
      */
     public function index()
     { 
@@ -22,8 +22,10 @@ class LikesController extends Controller
             ->get()
             ->pluck('review_id');
 
-        $user_likes_review = Review::whereIn('id', $user_likes)->get();
-        
+        $user_likes_review = Review::whereIn('id', $user_likes)
+            ->withCount('likes')
+            ->get();
+
         return view('user.likes',[
             'reviews' => $user_likes_review,
             'current_user_id' => $current_user_id,
@@ -86,7 +88,6 @@ class LikesController extends Controller
             $like->review_id = $review_id; 
             $like->user_id = $user_id;
             $like->save();
-            //
         } else {
             Like::where('review_id', $review_id)
                 ->where('user_id', $user_id)
@@ -98,6 +99,7 @@ class LikesController extends Controller
         $param = [
             'review_likes_count' => $review_likes_count,
         ];
+        
         return response()->json($param); 
     }
 }

@@ -38,11 +38,13 @@ class UserController extends Controller
 
          //idが、リクエストされた$userのidと一致するuserを取得
         $reviews = Review::where('user_id', $this->current_user->id) //$userによる投稿を取得
+            ->withCount('likes')
             ->orderBy('created_at', 'desc') // 投稿作成日が新しい順に並べる
             ->get();
 
         return view('user.profile', [
             'current_user_name' => $this->current_user->name,
+            'current_user_id'   => $this->current_user->id,
             'reviews'           => $reviews,
             'user'              => $this->current_user,
             'id'                => $this->current_user->id,
@@ -52,7 +54,6 @@ class UserController extends Controller
 
     /**
      * ユーザーのプロフィール編集ページを表示
-     * TODO: $idを受け取ってそのidのユーザープロフィールにすること
      * 
      * @param Request $request
      */
