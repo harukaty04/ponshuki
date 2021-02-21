@@ -11,9 +11,9 @@
             </div>
             <div class="col-sm ml-5">
                 <p>簡単！無料登録</p>
-                <div class ="btn btn-primary px-5 center-block">新規登録</div>
+                <a href="{{ route('register') }}" class ="btn btn-primary px-5 center-block">会員登録</a>
                 <p>すでに会員の方はこちら</p>
-                <div class ="btn btn-primary px-5 center-block">ログイン</div>
+                <a href="{{ route('login') }}" class ="btn btn-primary px-5 center-block">ログイン</a>
             </div>
             </div>
         </div>
