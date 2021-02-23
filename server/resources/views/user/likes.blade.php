@@ -3,24 +3,27 @@
 @section('title', 'ponshuki') 
 @section('content')
 
-<div class="row p-side-origin">
-    <div class="col-sm-3 ml-auto mr-auto">
-        @include('shared.side-bar')
-    </div>
-    <div class="col-sm-9">
-        <script type="text/javascript"
+<script type="text/javascript"
             src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
             <script type="text/javascript"
             src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
 
-        {{-- いいねした記事の表示 --}}
+<div class="row p-side-origin">
+    <div class="col-sm-3 ml-auto mr-auto">
+        @include('shared.side-bar')
+    </div>
+
+    
+    <div class="col-sm-9">
         @foreach($reviews as $review)
+        {{-- いいねした記事の表示 --}}
         <div class="card mt-5 mb-3 ">
-            <div class="card-body ">
+            <div class="card-body">
                 <a class="h4 " href="{{ route('user.profile',['id' => $review->user->id]) }} "><i class="fas fa-user-circle pr-2"></i>
                     {{ $review->user->name }}さん</a>
                 @if( $current_user_id === $review->user->id )
                 {{--ログインユーザーの場合のみ編集ボタンを出現させる--}}
+
                 <!-- dropdown -->
                 <div class="ml-auto card-text  btn-sm float-right">
                     <div class="dropdown">
@@ -103,12 +106,12 @@
                             <span class="like-counter">{{$review->likes_count}}</span>
                         </span><!-- /.likes -->
                 @endguest
-                
             </div>
         </div>
-    </div>
     @endforeach
-    <script src="{{ mix('/js/like.js') }}"></script>
+    </div>
 </div>
+    
+    <script src="{{ mix('/js/like.js') }}"></script>
 @endsection
 

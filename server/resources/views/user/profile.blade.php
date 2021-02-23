@@ -29,10 +29,10 @@
             </div> 
         </div>
             
-            {{-- レビューの表示 --}}
+    {{-- レビューの表示 --}}
     @foreach($reviews as $review)
     <div class="card mt-5 mb-3 ">
-        <div class="card-body ">
+        <div class="card-body">
             <a class="h4 " href="{{ route('user.profile',['id' => $review->user->id]) }} "><i class="fas fa-user-circle pr-2"></i>
                 {{ $review->user->name }}さん</a>
                 @if( $current_user_id === $review->user->id )
@@ -61,41 +61,40 @@
             <!-- modal -->
             <div id="modal-delete-{{ $review->id }}" class="modal fade" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form method="post" action="{{ route('review.destroy') }}">
+                            @csrf
+                            <input type="hidden" name="review_id" value="{{$review->id}}">
+                            <div class="modal-body">
+                                {{ $review->title }}を削除します。よろしいですか？
+                            </div>
+                            <div class="modal-footer justify-content-between">
+                                <a   class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
+                                <button type="submit" class="btn btn-danger" value="destroy">削除する</button>
+                            </div>
+                        </form>
                     </div>
-                    <form method="post" action="{{ route('review.destroy') }}">
-                        @csrf
-                        <input type="hidden" name="review_id" value="{{$review->id}}">
-                        <div class="modal-body">
-                            {{ $review->title }}を削除します。よろしいですか？
-                        </div>
-                        <div class="modal-footer justify-content-between">
-                            <a   class="btn btn-outline-grey" data-dismiss="modal">キャンセル</a>
-                            <button type="submit" class="btn btn-danger" value="destroy">削除する</button>
-                        </div>
-                    </form>
-                </div>
                 </div>
             </div>
             <!-- modal -->
             
             @endif
-        <h5 class="card-title border-bottom "> {{ $review->title }}   :   {{ $review->evaluation}}</h5> 
-        @if($review->image == null)
-        <img src="/uploads/noimage.jpg" width="100px" height="100px">
-        @else
-        <img src="/uploads/{{ $review->image }}" width="100px" height="100px">
-        @endif 
-    
-        <span class="all-rating">
-        味の濃さ  {{ $review->taste_intensity}} /香りの強さ  {{ $review->scent_strength}}
-        </span>
-        <p class="mt-3 ml-5 pl-5">{{ $review->content }}</p>
-        <span class="badge badge-pill badge-light ">#爽酒</span>
+            <h5 class="card-title border-bottom "> {{ $review->title }}   :   {{ $review->evaluation}}</h5> 
+            @if($review->image == null)
+            <img src="/uploads/noimage.jpg" width="100px" height="100px">
+            @else
+            <img src="/uploads/{{ $review->image }}" width="100px" height="100px">
+            @endif 
+            <span class="all-rating">
+            味の濃さ  {{ $review->taste_intensity}} /香りの強さ  {{ $review->scent_strength}}
+            </span>
+            <p class="mt-3 ml-5 pl-5">{{ $review->content }}</p>
+            <span class="badge badge-pill badge-light ">#爽酒</span>
 
         {{-- いいね機能の追加 --}}
             @auth
@@ -119,8 +118,8 @@
                     <span class="like-counter">{{ $review->likes_count }}</span>
                 </span><!-- /.likes -->
             @endguest
-        </div>
     </div>
+</div>
     @endforeach
     <script src="{{ mix('/js/like.js') }}"></script>
 @endsection
